@@ -1,0 +1,77 @@
+<div class="py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>Student Management</h2>
+
+    <%= link_to "Add Student",
+                new_student_path,
+                class: "btn btn-primary" %>
+
+  </div>
+
+  <% if @students.any? %>
+
+    <table class="table table-bordered table-hover">
+
+      <thead class="table-dark">
+
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Education</th>
+          <th>Course</th>
+          <th width="180">Action</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+  <% @students.each do |student| %>
+
+    <tr>
+
+      <td><%= student.student_name %></td>
+      <td><%= student.email %></td>
+      <td><%= student.phone %></td>
+      <td><%= student.gender %></td>
+
+      <td>
+        <%= student.course.course_name %>
+      </td>
+
+      <td>
+        <div class="d-flex gap-2">
+
+          <%= link_to "Edit",
+                edit_student_path(student),
+                class: "btn btn-warning btn-sm" %>
+
+          <%= button_to "Delete",
+                student_path(student),
+                method: :delete,
+                data: { turbo_confirm: "Are you sure?" },
+                class: "btn btn-danger btn-sm" %>
+
+        </div>
+      </td>
+
+    </tr>
+
+  <% end %>
+
+</tbody>
+
+    </table>
+
+  <% else %>
+
+    <div class="alert alert-info">
+      No Student found. Click <strong>"Add Student"</strong> to create your first student.
+    </div>
+
+  <% end %>
+
+</div>

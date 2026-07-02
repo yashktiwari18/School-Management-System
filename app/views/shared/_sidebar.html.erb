@@ -1,0 +1,74 @@
+<aside class="sidebar">
+
+  <!-- Brand -->
+
+  <div class="sidebar-brand">
+    <h4>School MS</h4>
+    <span>Admin Panel</span>
+  </div>
+
+  <!-- Navigation -->
+
+  <div class="sidebar-section">
+    <p class="sidebar-title">MAIN</p>
+
+    <%= link_to dashboard_path,
+        class: "sidebar-link #{'active' if current_page?(dashboard_path)}" do %>
+
+     <i class="bi bi-grid-1x2-fill"></i>
+        <span>Dashboard</span>
+
+    <% end %>
+  </div>
+
+  <div class="sidebar-section">
+
+    <p class="sidebar-title">ACADEMIC</p>
+
+    <%= link_to students_path,
+        class: "sidebar-link #{'active' if controller_name == 'students'}" do %>
+
+      <i class="bi bi-mortarboard-fill"></i> <span>Students</span>
+
+    <% end %>
+
+    <%= link_to teachers_path,
+        class: "sidebar-link #{'active' if controller_name == 'teachers'}" do %>
+
+      <i class="bi bi-person-workspace"></i> <span>Teachers</span>
+
+    <% end %>
+
+    <%= link_to courses_path,
+        class: "sidebar-link #{'active' if controller_name == 'courses'}" do %>
+
+      <i class="bi bi-journal-bookmark-fill"></i> <span>Courses</span>
+
+    <% end %>
+
+  </div>
+
+  <div class="sidebar-section">
+
+    <p class="sidebar-title">FINANCE</p>
+
+    <%= link_to fees_path,
+        class: "sidebar-link #{'active' if controller_name == 'fees'}" do %>
+
+      <i class="bi bi-cash-stack"></i> <span>Fees</span>
+
+    <% end %>
+
+
+    <%= link_to reports_path,
+      class: "sidebar-link #{'active' if controller_name == 'reports'}" do %>
+      <i class="bi bi-cash-stack"></i> <span>Reports</span>
+    <% end %>
+
+  </div>
+
+  
+
+</li>
+
+</aside>

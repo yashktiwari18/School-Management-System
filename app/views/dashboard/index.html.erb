@@ -1,0 +1,303 @@
+<div class="dashboard-header">
+
+  <div>
+
+    <h2 class="dashboard-title">
+      Dashboard
+    </h2>
+
+    <p class="dashboard-subtitle">
+      Welcome back,
+      <strong><%= current_admin.name %></strong> 👋
+      <br>
+      Manage your school from one place.
+    </p>
+
+  </div>
+
+  <div class="dashboard-date">
+
+    <small>Today</small>
+
+    <h6>
+      <%= Date.current.strftime("%d %B %Y") %>
+    </h6>
+
+  </div>
+
+</div>
+
+<div class="row g-4">
+
+
+
+  <!-- Students -->
+
+
+
+
+  <div class="col-lg-3 col-md-6 mb-4">
+
+  <div class="stats-card">
+
+    <div class="stats-top">
+
+      <div class="stats-icon students">
+        <i class="bi bi-mortarboard-fill"></i>
+      </div>
+
+      <span class="trend up">
+        ↑ 12%
+      </span>
+
+    </div>
+
+    <div class="stats-body">
+
+      <h2><%= @students_count %></h2>
+
+      <h6>Total Students</h6>
+
+      <p>
+        Compared to last month
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- Teachers -->
+
+
+
+  <div class="col-lg-3 col-md-6 mb-4">
+
+  <div class="stats-card">
+
+    <div class="stats-top">
+
+      <div class="stats-icon teachers">
+        <i class="bi bi-person-workspace"></i>
+      </div>
+
+      <span class="trend up">
+        ↑ 5%
+      </span>
+
+    </div>
+
+    <div class="stats-body">
+
+      <h2><%= @teachers_count %></h2>
+
+      <h6>Total Teachers</h6>
+
+      <p>Teaching staff available</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- Courses -->
+
+
+
+  <div class="col-lg-3 col-md-6 mb-4">
+
+  <div class="stats-card">
+
+    <div class="stats-top">
+
+      <div class="stats-icon courses">
+        <i class="bi bi-journal-bookmark-fill"></i>
+      </div>
+
+      <span class="trend up">
+        ↑ 8%
+      </span>
+
+    </div>
+
+    <div class="stats-body">
+
+      <h2><%= @courses_count %></h2>
+
+      <h6>Total Courses</h6>
+
+      <p>Courses currently active</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+  <!-- Fees -->
+
+
+
+  <div class="col-lg-3 col-md-6 mb-4">
+
+  <div class="stats-card">
+
+    <div class="stats-top">
+
+      <div class="stats-icon fees">
+        <i class="bi bi-cash-stack"></i>
+      </div>
+
+      <span class="trend up">
+        ↑ 18%
+      </span>
+
+    </div>
+
+    <div class="stats-body">
+
+      <h2>₹<%= @fees_collected %></h2>
+
+      <h6>Fees Collected</h6>
+
+      <p>Total fee received</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="dashboard-card mt-4">
+
+    <div class="section-header">
+
+        <div>
+
+            <h4 class="section-title">
+                Recent Admissions
+            </h4>
+
+            <p class="section-subtitle">
+                Latest students admitted to the school
+            </p>
+
+        </div>
+
+  
+    </div>
+
+    <div class="card-footer-custom">
+
+    <small class="text-muted">
+
+        Showing latest
+        <strong><%= @recent_students.count %></strong>
+        admissions
+
+    </small>
+
+    <%= link_to students_path,
+        class: "view-all-link" do %>
+
+        View All Students
+
+        <i class="bi bi-arrow-right"></i>
+
+    <% end %>
+
+</div>
+
+    <table class="table admission-table align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>Student</th>
+                <th>Course</th>
+                <th>Admission Date</th>
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% @recent_students.each do |student| %>
+
+                <tr>
+
+                    <td>
+                        <strong><%= student.student_name %></strong><br>
+
+                        <small class="text-muted">
+                            <%= student.email %>
+                        </small>
+                    </td>
+
+                    <td>
+
+                        <span class="course-badge">
+                        <i class="bi bi-book-half"></i>
+                          <%= student.course.course_name %>
+                      </span>
+                    </td>
+                    <td>
+
+    <% days = (Date.current - student.created_at.to_date).to_i %>
+
+    <% if days == 0 %>
+
+        <span class="date-badge today">
+            Today
+        </span>
+
+    <% elsif days == 1 %>
+
+        <span class="date-badge yesterday">
+            Yesterday
+        </span>
+
+    <% elsif days <= 7 %>
+
+        <span class="date-badge recent">
+            <%= "#{days} days ago" %>
+        </span>
+
+    <% else %>
+
+        <span class="date-badge">
+            <%= student.created_at.strftime("%d %b %Y") %>
+        </span>
+
+    <% end %>
+
+</td>
+
+                    <td>
+
+                        <span class="status-badge new">
+                          New Admission
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            <% end %>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</div>

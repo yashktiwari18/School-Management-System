@@ -1,0 +1,863 @@
+/* ===== Main Layout ===== */
+
+.admin-layout{
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.main-content{
+    flex: 1;
+    padding: 30px;
+    background: #F8FAFC;
+}
+ 
+
+/* ===== Global ===== */
+
+:root{
+  --primary:#2563EB;
+  --primary-dark:#1D4ED8;
+
+  --sidebar:#111827;
+  --sidebar-hover:#1F2937;
+
+  --background:#F8FAFC;
+
+  --card:#FFFFFF;
+
+  --success:#22C55E;
+  --warning:#F59E0B;
+  --danger:#EF4444;
+
+  --text:#1E293B;
+  --muted:#64748B;
+
+  --border:#E2E8F0;
+
+  --radius:16px;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  background:var(--background);
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar-custom{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    height:64px;
+
+    padding:0 28px;
+
+    background:#fff;
+
+    border-bottom:1px solid #E5E7EB;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+}
+
+.navbar-left{
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+    color:#2563eb;
+    letter-spacing: .3px;
+}
+
+.notification-btn{
+
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#F8FAFC;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.notification-btn:hover{
+
+    background:#EEF2FF;
+}
+
+.admin-profile{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:#2563EB;
+
+    color:#fff;
+
+    font-size:16px;
+    font-weight:600;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.admin-name{
+    font-weight: 600;
+}
+
+.admin-profile small{
+
+    color:#64748B;
+
+    font-size:12px;
+
+    display:block;
+
+    margin-top:2px;
+}
+
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar{
+
+    width:260px;
+
+    min-height:calc(100vh - 64px);
+
+    background:#111827;
+
+    color:white;
+
+    padding:24px 18px;
+}
+
+/* Brand */
+
+.sidebar-brand{
+
+    margin-bottom:35px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand h4{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.sidebar-brand span{
+
+    color:#94A3B8;
+
+    font-size:13px;
+}
+
+/* Section */
+
+.sidebar-section{
+
+    margin-bottom:28px;
+}
+
+.sidebar-title{
+
+    color:#64748B;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:12px;
+
+    text-transform:uppercase;
+}
+
+/* Links */
+
+.sidebar-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#CBD5E1;
+
+    text-decoration:none;
+
+    padding:12px 14px;
+
+    border-radius:10px;
+
+    margin-bottom:6px;
+
+    transition:.25s;
+}
+
+.sidebar-link:hover{
+
+    background:#1E293B;
+
+    color:white;
+}
+
+.sidebar-link.active{
+
+    background:#2563EB;
+
+    color:white;
+
+    font-weight:600;
+}
+.sidebar-link i{
+
+    width:20px;
+
+    font-size:18px;
+
+    text-align:center;
+}
+
+
+
+
+
+/* ===========================
+   Premium Stats Card
+=========================== */
+
+.stats-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.12);
+
+}
+
+.stats-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.stats-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:#fff;
+
+}
+
+.stats-icon.students{
+    background:#2563EB;
+}
+
+.stats-icon.teachers{
+    background:#10B981;
+}
+
+.stats-icon.courses{
+    background:#F59E0B;
+}
+
+.stats-icon.fees{
+    background:#EF4444;
+}
+
+.stats-body h2{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+    color:#1E293B;
+
+}
+
+.stats-body h6{
+
+    color:#475569;
+
+    font-size:18px;
+
+    margin-bottom:6px;
+
+}
+
+.stats-body p{
+
+    color:#94A3B8;
+
+    margin:0;
+
+    font-size:14px;
+
+}
+
+.trend{
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.trend.up{
+
+    background:#DCFCE7;
+
+    color:#16A34A;
+
+}
+
+
+/* ===== Dashboard Header ===== */
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:35px;
+}
+
+.dashboard-title{
+    font-size:32px;
+    font-weight:700;
+    color:#1E293B;
+}
+
+.dashboard-subtitle{
+    color:#64748B;
+    margin-top:8px;
+}
+
+.dashboard-date{
+    text-align:right;
+    background:#fff;
+    padding:16px 24px;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+}
+
+.dashboard-date small{
+    color:#94A3B8;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.dashboard-date h6{
+    margin-top:5px;
+    font-weight:700;
+}
+
+.page-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.page-header h2{
+
+    font-size:34px;
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+.page-header p{
+
+    margin:0;
+    color:#64748B;
+
+}
+
+.content-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+
+}
+
+.table-header{
+display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    gap:20px;
+}
+
+.table-actions{
+    display:flex;
+    gap:15px;
+}
+
+.table-actions input{
+    width:240px;
+}
+
+.table-actions select{
+    width:170px;
+}
+
+.table-header h5{
+    font-size:22px;
+    font-weight:700;
+    color:#1E293B;
+
+}
+
+.fee-table{
+
+    margin-bottom:0;
+
+}
+
+.fee-table thead{
+
+    background:#F8FAFC;
+
+}
+
+.fee-table th{
+
+    border:none;
+
+    padding:18px;
+
+    color:#64748B;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    font-weight:600;
+
+}
+
+.fee-table td{
+
+    padding:20px 18px;
+
+    border-top:1px solid #EEF2F7;
+
+    vertical-align:middle;
+
+}
+
+.fee-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.fee-table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+.dashboard-card{
+
+    background:#FFFFFF;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+
+}
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1E293B;
+
+    margin-bottom:4px;
+
+}
+
+.section-subtitle{
+
+    color:#64748B;
+
+    margin:0;
+
+}
+
+.admission-table th{
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    color:#94A3B8;
+
+    font-weight:600;
+
+    border:none;
+
+}
+
+.admission-table td{
+
+    padding:18px 12px;
+
+    vertical-align:middle;
+
+    border-top:1px solid #EEF2F7;
+
+}
+
+.admission-table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+/* Status Badge */
+
+.status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.status-badge.new{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+/* Admission Date Badge */
+
+.date-badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:25px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    background:#F1F5F9;
+
+    color:#475569;
+
+}
+
+.date-badge.today{
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+}
+
+.date-badge.yesterday{
+
+    background:#FEF3C7;
+
+    color:#D97706;
+
+}
+
+.date-badge.recent{
+
+    background:#E0F2FE;
+
+    color:#0284C7;
+
+}
+
+
+/* Course Badge */
+
+.course-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.course-badge i{
+
+    font-size:15px;
+
+}
+
+/* Dashboard Card Footer */
+
+.card-footer-custom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    border-top:1px solid #EEF2F7;
+
+}
+
+.view-all-link{
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    color:#2563EB;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+.view-all-link:hover{
+
+    color:#1D4ED8;
+
+    gap:12px;
+
+}
+
+/* ==========================================
+   Reports Module
+========================================== */
+
+.report-section{
+
+    background:#FFFFFF;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-top:30px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+.report-section-header{
+
+    margin-bottom:25px;
+
+}
+
+.report-section-header h4{
+
+    font-weight:700;
+
+    color:#1E293B;
+
+}
+
+.overview-table{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.overview-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.overview-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.overview-label{
+
+    color:#64748B;
+
+    font-weight:500;
+
+}
+
+.overview-value{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#2563EB;
+
+}

@@ -1,0 +1,56 @@
+<nav class="navbar-custom">
+
+  <!-- Left -->
+
+  <div class="navbar-left">
+
+    <h4 class="logo">
+      School Management
+    </h4>
+
+  </div>
+
+  <!-- Right -->
+
+  <div class="navbar-right">
+
+    <button class="notification-btn">
+
+      🔔
+
+    </button>
+
+    <div class="admin-profile">
+
+      <div class="avatar">
+
+        <%= current_admin.name.first.upcase %>
+
+      </div>
+
+      <div>
+
+        <div class="admin-name">
+
+          <%= current_admin.name %>
+
+        </div>
+
+        <small>
+
+          Administrator
+
+        </small>
+
+      </div>
+
+    </div>
+
+    <%= button_to "Logout",
+          logout_path,
+          method: :delete,
+          class: "btn btn-danger btn-sm" %>
+
+  </div>
+
+</nav>

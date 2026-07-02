@@ -1,0 +1,307 @@
+<div class="page-header">
+
+    <div>
+
+        <h2>📊 Student Reports</h2>
+
+        <p class="text-muted">
+            Analyze student admissions, enrollment trends, and academic insights.
+        </p>
+
+    </div>
+
+    <div>
+
+        <button class="btn btn-outline-secondary me-2" disabled>
+            <i class="bi bi-file-earmark-pdf"></i>
+            PDF
+        </button>
+
+        <button class="btn btn-outline-success me-2" disabled>
+            <i class="bi bi-file-earmark-excel"></i>
+            Excel
+        </button>
+
+        <button class="btn btn-primary" disabled>
+            <i class="bi bi-download"></i>
+            Export Report
+        </button>
+
+    </div>
+
+</div>
+
+<div class="report-section">
+
+    <div class="report-section-header">
+
+        <div>
+
+            <h4>Admissions Overview</h4>
+
+            <p class="text-muted mb-0">
+                Student admission summary based on current records.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="overview-table">
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Admissions This Month
+            </span>
+
+            <span class="overview-value">
+                <%= @admissions_this_month %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Admissions This Year
+            </span>
+
+            <span class="overview-value">
+                <%= @admissions_this_year %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Latest Admission
+            </span>
+
+            <span class="overview-value">
+
+                <%= @latest_student&.student_name || "-" %>
+
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Most Popular Course
+            </span>
+
+            <span class="overview-value">
+
+                <%= @popular_course&.course_name || "-" %>
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="report-section">
+
+    <div class="report-section-header">
+
+        <div>
+
+            <h4>Teacher Analytics</h4>
+
+            <p class="text-muted mb-0">
+                Faculty insights and academic allocation.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="overview-table">
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Total Teachers
+            </span>
+
+            <span class="overview-value">
+                <%= @teachers_count %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Latest Teacher Joined
+            </span>
+
+            <span class="overview-value">
+                <%= @latest_teacher&.teacher_name || "-" %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Most Common Qualification
+            </span>
+
+            <span class="overview-value">
+                <%= @highest_qualification&.first || "-" %>
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="report-section">
+
+    <div class="report-section-header">
+
+        <div>
+
+            <h4>Course Analytics</h4>
+
+            <p class="text-muted mb-0">
+                Course enrollment and academic overview.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="overview-table">
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Total Courses
+            </span>
+
+            <span class="overview-value">
+                <%= @courses_count %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Most Popular Course
+            </span>
+
+            <span class="overview-value">
+                <%= @most_popular_course&.course_name || "-" %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Largest Course
+            </span>
+
+            <span class="overview-value">
+                <%= @largest_course&.course_name || "-" %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Average Students / Course
+            </span>
+
+            <span class="overview-value">
+                <%= @student_per_course %>
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="report-section">
+
+    <div class="report-section-header">
+
+        <div>
+
+            <h4>Finance Reports</h4>
+
+            <p class="text-muted mb-0">
+                School fee collection and payment analytics.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="overview-table">
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Total Collection
+            </span>
+
+            <span class="overview-value">
+                ₹<%= number_with_delimiter(@total_collection.to_i) %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Pending Fees
+            </span>
+
+            <span class="overview-value">
+                ₹<%= number_with_delimiter(@pending_fees.to_i) %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Monthly Revenue
+            </span>
+
+            <span class="overview-value">
+                ₹<%= number_with_delimiter(@monthly_revenue.to_i) %>
+            </span>
+
+        </div>
+
+        <div class="overview-row">
+
+            <span class="overview-label">
+                Overdue Payments
+            </span>
+
+            <span class="overview-value">
+                <%= @overdue_payments %>
+            </span>
+
+        </div>
+
+    </div>
+
+</div>

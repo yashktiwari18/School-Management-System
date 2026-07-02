@@ -1,0 +1,69 @@
+<%= form_with(model: @student) do |form| %>
+
+  <% if @student.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% @student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :student_name %>
+    <%= form.text_field :student_name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :gender %>
+    <%= form.select :gender,
+          ["Male", "Female", "Other"],
+          { prompt: "Select Gender" },
+          class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :admission_date %>
+    <%= form.date_field :admission_date,
+          class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :course %>
+
+    <%= form.collection_select :course_id,
+          @courses,
+          :id,
+          :course_name,
+          { prompt: "Select Course" },
+          { class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :address %>
+    <%= form.text_area :address,
+          rows: 4,
+          class: "form-control" %>
+  </div>
+
+  <%= form.submit(
+        @student.new_record? ? "Create Student" : "Update Student",
+        class: "btn btn-success"
+      ) %>
+
+  <%= link_to "Back",
+              students_path,
+              class: "btn btn-secondary" %>
+
+<% end %>

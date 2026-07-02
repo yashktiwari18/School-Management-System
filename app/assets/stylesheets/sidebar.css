@@ -1,0 +1,12 @@
+.sidebar{
+
+    width:270px;
+
+    background:#111827;
+
+    min-height:calc(100vh - 70px);
+
+    color:white;
+
+    transition:.3s;
+}
