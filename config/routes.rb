@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   resources :fees
   # Reports Module
   resources :reports, only: [ :index ]
+  # Attendance
+  resources :attendances
 end

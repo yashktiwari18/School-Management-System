@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :course
   has_many :fees, dependent: :destroy
+  has_many :attendances, dependent: :destroy
 
   validates :student_name, presence: true
   validates :email, presence: true, uniqueness: true

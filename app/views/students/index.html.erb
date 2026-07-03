@@ -20,9 +20,8 @@
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Education</th>
+          <th>Gender</th>
           <th>Course</th>
-          <th width="180">Action</th>
         </tr>
 
       </thead>
@@ -33,7 +32,11 @@
 
     <tr>
 
-      <td><%= student.student_name %></td>
+      <td>
+        <%= link_to student.student_name,
+        student_path(student),
+        class: "student-name-link" %>
+      </td>
       <td><%= student.email %></td>
       <td><%= student.phone %></td>
       <td><%= student.gender %></td>
@@ -41,23 +44,6 @@
       <td>
         <%= student.course.course_name %>
       </td>
-
-      <td>
-        <div class="d-flex gap-2">
-
-          <%= link_to "Edit",
-                edit_student_path(student),
-                class: "btn btn-warning btn-sm" %>
-
-          <%= button_to "Delete",
-                student_path(student),
-                method: :delete,
-                data: { turbo_confirm: "Are you sure?" },
-                class: "btn btn-danger btn-sm" %>
-
-        </div>
-      </td>
-
     </tr>
 
   <% end %>

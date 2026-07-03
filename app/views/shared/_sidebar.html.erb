@@ -27,24 +27,25 @@
 
     <%= link_to students_path,
         class: "sidebar-link #{'active' if controller_name == 'students'}" do %>
-
       <i class="bi bi-mortarboard-fill"></i> <span>Students</span>
-
     <% end %>
 
     <%= link_to teachers_path,
         class: "sidebar-link #{'active' if controller_name == 'teachers'}" do %>
-
       <i class="bi bi-person-workspace"></i> <span>Teachers</span>
-
     <% end %>
 
     <%= link_to courses_path,
         class: "sidebar-link #{'active' if controller_name == 'courses'}" do %>
-
       <i class="bi bi-journal-bookmark-fill"></i> <span>Courses</span>
-
     <% end %>
+
+    
+  <%= link_to attendances_path,
+      class: "sidebar-link #{'active' if controller_name == 'attendances'}" do %>
+    <i class="bi bi-calendar-check"></i> <span>Attendance</span>
+  <% end %>
+
 
   </div>
 

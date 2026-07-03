@@ -1,10 +1,15 @@
 class StudentsController < ApplicationController
   before_action :require_login
-  before_action :set_student, only: [:edit, :update, :destroy]
-  before_action :load_courses, only: [:new, :create, :edit, :update]
+  before_action :set_student, only: [ :show, :edit, :update, :destroy ]
+  before_action :load_courses, only: [ :new, :create, :edit, :update ]
 
   def index
     @students = Student.includes(:course)
+  end
+
+  def show
+    @student = Student.find(params[:id])
+    @fee = @student.fees.order(created_at: :desc).first
   end
 
   def new
@@ -35,6 +40,10 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     redirect_to students_path, notice: "Student deleted successfully."
+  end
+
+  def latest_fee
+    fees.order(created_at: :desc).first
   end
 
   private

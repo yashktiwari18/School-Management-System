@@ -1,0 +1,319 @@
+<div class="profile-summary">
+
+    <!-- Avatar -->
+
+    <div class="profile-avatar-section">
+
+        <div class="profile-avatar">
+
+            <%= @student.student_name.first.upcase %>
+
+        </div>
+
+    </div>
+
+    <!-- Student Details -->
+
+    <div class="profile-details">
+
+        <h2><%= @student.student_name %></h2>
+
+        <p>
+
+            <i class="bi bi-mortarboard-fill"></i>
+
+            <%= @student.course.course_name %>
+
+        </p>
+
+        <span class="student-status">
+
+            Active Student
+
+        </span>
+
+        <div class="profile-actions">
+
+            <%= link_to edit_student_path(@student),
+                class:"btn btn-primary" do %>
+
+                <i class="bi bi-pencil-square"></i>
+
+                Edit Profile
+
+            <% end %>
+
+            <%= button_to @student,
+                method: :delete,
+                form: {
+                    data: {
+                        turbo_confirm: "Delete this student?"
+                    }
+                },
+                class:"btn btn-outline-danger" do %>
+
+                <i class="bi bi-trash"></i>
+
+                Delete
+
+            <% end %>
+
+            <%= link_to "#",
+                class:"btn btn-success" do %>
+
+                <i class="bi bi-cash-stack"></i>
+
+                Collect Fee
+
+            <% end %>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Information -->
+
+    <div class="profile-quick-info">
+
+        <div class="quick-info-item">
+
+            <small>Student ID</small>
+
+            <strong>STD-<%= @student.id.to_s.rjust(4, "0") %></strong>
+
+        </div>
+
+        <div class="quick-info-item">
+
+            <small>Admission Date</small>
+
+            <strong>
+
+                <%= @student.created_at.strftime("%d %b %Y") %>
+
+            </strong>
+
+        </div>
+
+        <div class="quick-info-item">
+
+            <small>Email</small>
+
+            <strong><%= @student.email %></strong>
+
+        </div>
+
+        <div class="quick-info-item">
+
+            <small>Phone</small>
+
+            <strong><%= @student.phone %></strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="profile-grid">
+
+    <div class="profile-card">
+
+    <div class="card-title">
+
+        <i class="bi bi-mortarboard-fill"></i>
+
+        <h4>Academic Information</h4>
+
+    </div>
+
+    <div class="info-list">
+
+        <div class="info-row">
+
+            <span>Course</span>
+
+            <strong><%= @student.course.course_name %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Student ID</span>
+
+            <strong>STD-<%= @student.id.to_s.rjust(4, "0") %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Admission Date</span>
+
+            <strong><%= @student.admission_date.strftime("%d %b %Y") %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Status</span>
+
+            <span class="badge bg-success">Active</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="profile-card">
+
+    <div class="card-title">
+
+        <i class="bi bi-person-circle"></i>
+
+        <h4>Personal Information</h4>
+
+    </div>
+
+    <div class="info-list">
+
+        <div class="info-row">
+
+            <span>Gender</span>
+
+            <strong><%= @student.gender %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Phone</span>
+
+            <strong><%= @student.phone %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Email</span>
+
+            <strong><%= @student.email %></strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Admission Date</span>
+
+            <strong>
+
+                <%= @student.created_at.strftime("%d %b %Y") %>
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="profile-grid">
+
+    <div class="profile-card">
+
+        <div class="card-title">
+
+            <i class="bi bi-cash-stack"></i>
+
+            <h4>Fee Summary</h4>
+
+        </div>
+
+        <div class="info-list">
+
+            <div class="info-row">
+
+                <span>Total Fee</span>
+
+                <strong>
+                    ₹<%= @fee&.total_fee || 0 %>
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>Paid</span>
+
+                <strong class="text-success">
+                    ₹<%= @fee&.paid_fee || 0 %>
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>Pending</span>
+
+                <strong class="text-danger">
+                    ₹<%= @fee&.due_fee || 0 %>
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+                <span>Status</span>
+                <span class="badge <%= @fee&.status == 'Paid' ? 'bg-success' : 'bg-warning text-dark' %>">
+                    <%= @fee&.status || "No Record" %>
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="profile-card">
+
+    <div class="card-title">
+
+        <i class="bi bi-calendar-check"></i>
+
+        <h4>Attendance Summary</h4>
+
+    </div>
+
+    <div class="attendance-summary">
+
+        <div class="attendance-box total">
+
+            <small>Total Classes</small>
+
+            <h3>0</h3>
+
+        </div>
+
+        <div class="attendance-box present">
+
+            <small>Present</small>
+
+            <h3>0 (0%)</h3>
+
+        </div>
+
+        <div class="attendance-box absent">
+
+            <small>Absent</small>
+
+            <h3>0 (0%)</h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>

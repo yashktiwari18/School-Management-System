@@ -236,7 +236,12 @@
                 <tr>
 
                     <td>
-                        <strong><%= student.student_name %></strong><br>
+                        <strong><%= link_to student.student_name,
+                        student_path(student),
+                        class: "student-name-link" %>
+                        </strong>
+                        
+                        <br>
 
                         <small class="text-muted">
                             <%= student.email %>

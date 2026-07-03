@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_01_075502) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_03_113004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_01_075502) do
     t.string "password_digest"
     t.datetime "updated_at", null: false
     t.string "username"
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.date "attendance_date", null: false
+    t.datetime "created_at", null: false
+    t.text "remarks"
+    t.string "status", null: false
+    t.bigint "student_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -67,6 +77,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_01_075502) do
     t.index ["course_id"], name: "index_teachers_on_course_id"
   end
 
+  add_foreign_key "attendances", "students"
   add_foreign_key "fees", "students"
   add_foreign_key "students", "courses"
   add_foreign_key "teachers", "courses"

@@ -758,6 +758,80 @@ display:flex;
 
 }
 
+/* ===========================
+   Profile Information Card
+=========================== */
+
+.card-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+.card-title i{
+
+    font-size:24px;
+
+    color:#2563EB;
+
+}
+
+.card-title h4{
+
+    margin:0;
+
+}
+
+.info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.info-row:last-child{
+
+    border:none;
+
+}
+
+.info-row span{
+
+    color:#64748B;
+
+    font-weight:500;
+
+}
+
+.info-row strong{
+
+    color:#1E293B;
+
+}
+
 .view-all-link{
 
     text-decoration:none;
@@ -859,5 +933,414 @@ display:flex;
     font-weight:700;
 
     color:#2563EB;
+
+}
+
+/* Student Name Link */
+
+.student-name-link{
+
+    text-decoration:none;
+
+    color:#1E293B;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.student-name-link:hover{
+
+    color:#2563EB;
+
+}
+
+/* ===================================
+   Student Profile
+=================================== */
+
+.student-profile{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+.profile-header{
+
+    background:#FFFFFF;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.back-link{
+
+    text-decoration:none;
+
+    color:#64748B;
+
+    font-weight:500;
+
+}
+
+.profile-summary{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-top:25px;
+
+}
+
+.profile-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:#2563EB;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+}
+
+.profile-details h2{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.profile-details p{
+
+    color:#64748B;
+
+    margin:6px 0;
+
+}
+
+.student-status{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+    padding:6px 14px;
+
+    border-radius:25px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.profile-actions{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.profile-meta{
+
+    display:flex;
+
+    gap:50px;
+
+    margin-top:20px;
+
+}
+
+.profile-meta strong{
+
+    color:#1E293B;
+
+    font-size:14px;
+
+}
+
+.profile-meta div{
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+   Student Profile Grid
+=========================== */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.profile-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+    min-height:260px;
+
+}
+
+.profile-card h4{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+/* ===========================
+   Attendance Summary
+=========================== */
+
+.attendance-summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.attendance-box{
+
+    border-radius:14px;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+.attendance-box small{
+
+    color:#64748B;
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+.attendance-box h3{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.attendance-box.total{
+
+    background:#EFF6FF;
+
+}
+
+.attendance-box.present{
+
+    background:#ECFDF5;
+
+}
+
+.attendance-box.absent{
+
+    background:#FEF2F2;
+
+}
+
+.dashboard-section{
+
+    margin-top:30px;
+
+}
+
+.dashboard-section h4{
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+/* Attendance Dashboard */
+
+.dashboard-grid{
+
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
+    margin-top:30px;
+
+}
+
+.dashboard-left,
+.dashboard-right{
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+}
+
+.dashboard-card{
+
+    background:#fff;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+}
+
+.teacher-summary{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+@media(max-width:992px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+.attendance-card{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    padding:24px;
+
+}
+
+.card-icon{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:22px;
+
+}
+
+.card-content h6{
+
+    color:#64748b;
+
+    margin:0;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.card-content h2{
+
+    margin:8px 0;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+}
+
+.card-content p{
+
+    margin:0;
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+}
+
+.trend-badge{
+
+    position:absolute;
+
+    top:24px;
+
+    right:24px;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-size:12px;
+
+    font-weight:600;
 
 }
