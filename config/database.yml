@@ -88,7 +88,8 @@ test:
 production:
   primary:
     <<: *default
-    url: <%= ENV["postgresql://school_management_production_kfe3_user:Lkon29s01Tih5b4J6BislSNmRvQH5a8R@dpg-d949mbflk1mc73ap90qg-a/school_management_production_kfe3"] %>
+    url: <%= ENV["DATABASE_URL"] %>
+
 
   cache:
     <<: *primary
