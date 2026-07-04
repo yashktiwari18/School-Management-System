@@ -86,20 +86,21 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
+  primary:
     <<: *default
-    database: school_management_production
-    username: school_management
-    password: <%= ENV["SCHOOL_MANAGEMENT_DATABASE_PASSWORD"] %>
+    url: <%= ENV["postgresql://school_management_production_kfe3_user:Lkon29s01Tih5b4J6BislSNmRvQH5a8R@dpg-d949mbflk1mc73ap90qg-a/school_management_production_kfe3"] %>
+
   cache:
-    <<: *primary_production
+    <<: *primary
     database: school_management_production_cache
     migrations_paths: db/cache_migrate
+
   queue:
-    <<: *primary_production
+    <<: *primary
     database: school_management_production_queue
     migrations_paths: db/queue_migrate
+
   cable:
-    <<: *primary_production
+    <<: *primary
     database: school_management_production_cable
     migrations_paths: db/cable_migrate
