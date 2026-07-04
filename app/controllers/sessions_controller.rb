@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
-
-  before_action :redirect_if_logged_in, only: [:new]
-
-  def new
-  end
+  before_action :redirect_if_logged_in, only: [ :new ]
+    def new
+    end
 
   def create
     admin = Admin.find_by(username: params[:username])
@@ -27,5 +25,4 @@ class SessionsController < ApplicationController
   def redirect_if_logged_in
     redirect_to dashboard_path if logged_in?
   end
-
 end

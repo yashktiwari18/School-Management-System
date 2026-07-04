@@ -2,7 +2,10 @@ require "test_helper"
 
 class ReportsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get reports_index_url
+    login_as(admins(:one))
+
+    get reports_path
+
     assert_response :success
   end
 end

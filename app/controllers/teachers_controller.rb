@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
   before_action :require_login
-  before_action :set_teacher, only: [:edit, :update, :destroy]
-  before_action :load_courses, only: [:new, :create, :edit, :update]
+  before_action :set_teacher, only: [ :edit, :update, :destroy ]
+  before_action :load_courses, only: [ :new, :create, :edit, :update ]
 
   def index
     @teachers = Teacher.includes(:course)
@@ -56,5 +56,4 @@ end
       :course_id
     )
   end
-
 end
