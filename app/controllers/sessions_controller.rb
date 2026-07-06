@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
   def create
     admin = Admin.find_by(username: params[:username])
 
+    session[:admin_id] = admin.id
+    session[:last_seen_at] = Time.current
+
     if admin&.authenticate(params[:password])
       session[:admin_id] = admin.id
       redirect_to dashboard_path, notice: "Login Successful!"
@@ -18,6 +21,9 @@ class SessionsController < ApplicationController
   def destroy
     session[:admin_id] = nil
     redirect_to login_path, notice: "Logged out successfully."
+
+    reset_session
+    redirect_to login_path
   end
 
   private
