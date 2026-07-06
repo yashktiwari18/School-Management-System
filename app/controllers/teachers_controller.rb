@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   before_action :require_login
-  before_action :set_teacher, only: [ :edit, :update, :destroy ]
+  before_action :set_teacher, only: [ :show, :edit, :update, :destroy ]
   before_action :load_courses, only: [ :new, :create, :edit, :update ]
 
   def index
@@ -22,6 +22,9 @@ class TeachersController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update

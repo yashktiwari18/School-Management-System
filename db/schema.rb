@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_03_113004) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_06_045207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,6 +51,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_03_113004) do
     t.decimal "total_fee"
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_fees_on_student_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "is_read"
+    t.text "message"
+    t.string "notification_type"
+    t.string "title"
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|

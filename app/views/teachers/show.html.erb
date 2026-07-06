@@ -1,0 +1,159 @@
+<div class="teacher-profile-page">
+
+    <div class="teacher-profile-header">
+
+        <!-- Back Button -->
+        <%= link_to "← Back to Teachers",
+            teachers_path,
+            class: "back-btn" %>
+
+        <!-- Teacher Profile Card -->
+        <div class="teacher-profile-card">
+
+            <!-- Avatar -->
+            <div class="teacher-avatar">
+                <%= @teacher.teacher_name.first.upcase %>
+            </div>
+
+            <!-- Teacher Name -->
+            <h2 class="teacher-name">
+                <%= @teacher.teacher_name %>
+            </h2>
+
+            <!-- Course -->
+            <p class="teacher-course">
+                <i class="bi bi-book"></i>
+                <%= @teacher.course.course_name %>
+            </p>
+
+            <!-- Qualification -->
+            <p class="teacher-qualification">
+                <i class="bi bi-award"></i>
+                <%= @teacher.education %>
+            </p>
+
+            <!-- Status -->
+            <span class="teacher-status">
+                <i class="bi bi-check-circle-fill"></i>
+                Active Teacher
+            </span>
+
+            <!-- Action Buttons -->
+            <div class="teacher-actions">
+
+                <%= link_to edit_teacher_path(@teacher),
+                class: "btn-edit-profile" do %>
+                <i class="bi bi-pencil-square"></i>
+                Edit Profile
+                <% end %>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="teacher-info-grid">
+
+  <!-- Basic Information -->
+  <div class="info-card">
+
+    <h3>
+      <i class="bi bi-person-vcard"></i>
+      Basic Information
+    </h3>
+
+    <div class="info-row">
+      <span>Email</span>
+      <strong><%= @teacher.email %></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Phone</span>
+      <strong><%= @teacher.phone %></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Teacher ID</span>
+      <strong>TCH-<%= @teacher.id.to_s.rjust(3, "0") %></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Joined On</span>
+      <strong><%= @teacher.created_at.strftime("%d %b %Y") %></strong>
+    </div>
+
+  </div>
+
+  <!-- Academic Information -->
+  <div class="info-card">
+
+    <h3>
+      <i class="bi bi-mortarboard"></i>
+      Academic Information
+    </h3>
+
+    <div class="info-row">
+      <span>Assigned Course</span>
+      <strong><%= @teacher.course.course_name %></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Qualification</span>
+      <strong><%= @teacher.education %></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Status</span>
+      <span class="status-active">Active</span>
+    </div>
+
+    <div class="info-row">
+      <span>Department</span>
+      <strong>Not Available</strong>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="teacher-summary-card">
+
+  <div class="summary-header">
+    <i class="bi bi-person-workspace"></i>
+    <h3>About</h3>
+  </div>
+
+  <div class="summary-details">
+
+    <div class="summary-item">
+      <i class="bi bi-envelope-fill"></i>
+      <span><%= @teacher.email %></span>
+    </div>
+
+    <div class="summary-item">
+      <i class="bi bi-telephone-fill"></i>
+      <span><%= @teacher.phone %></span>
+    </div>
+
+    <div class="summary-item">
+      <i class="bi bi-book-fill"></i>
+      <span>
+        Assigned Course :
+        <strong><%= @teacher.course.course_name %></strong>
+      </span>
+    </div>
+
+    <div class="summary-item">
+      <i class="bi bi-award-fill"></i>
+      <span>
+        Qualification :
+        <strong><%= @teacher.education %></strong>
+      </span>
+    </div>
+
+  </div>
+
+</div>
+
+</div>

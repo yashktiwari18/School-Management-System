@@ -1,0 +1,97 @@
+<div class="overview-summary">
+
+  <div class="summary-card blue">
+
+      <div class="icon">
+          🎓
+      </div>
+
+      <div>
+
+          <h4>Students Present</h4>
+
+          <h2>
+              <%= @students_present %>
+          </h2>
+
+          <p>
+              out of <%= @total_students %>
+          </p>
+
+      </div>
+
+  </div>
+
+
+
+  <div class="summary-card green">
+
+      <div class="icon">
+          👨‍🏫
+      </div>
+
+      <div>
+
+          <h4>Teachers Present</h4>
+
+          <h2>
+              <%= @teachers_present %>
+          </h2>
+
+          <p>
+              out of <%= @total_teachers %>
+          </p>
+
+      </div>
+
+  </div>
+
+
+
+  <div class="summary-card orange">
+
+      <div class="icon">
+          ⏰
+      </div>
+
+      <div>
+
+          <h4>Late Arrivals</h4>
+
+          <h2>
+              <%= @students_late %>
+          </h2>
+
+          <p>
+              Students
+          </p>
+
+      </div>
+
+  </div>
+
+
+
+  <div class="summary-card purple">
+
+      <div class="icon">
+          📈
+      </div>
+
+      <div>
+
+          <h4>Attendance Rate</h4>
+
+          <h2>
+              <%= @attendance_rate %>%
+          </h2>
+
+          <p>
+              Today
+          </p>
+
+      </div>
+
+  </div>
+
+</div>

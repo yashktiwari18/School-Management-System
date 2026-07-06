@@ -1,0 +1,61 @@
+<div id="notificationDropdown" class="notification-dropdown">
+
+  <div class="notification-header">
+    <h6>Notifications</h6>
+
+    <%= link_to "#", class: "mark-read" do %>
+      Mark all read
+    <% end %>
+  </div>
+
+  <div class="notification-list">
+
+    <div class="notification-item unread">
+      <div class="notification-icon student">
+        👤
+      </div>
+
+      <div class="notification-content">
+        <strong>New Student Registered</strong>
+
+        <p>Rahul Sharma admitted to BCA.</p>
+
+        <small>Just now</small>
+      </div>
+    </div>
+
+    <div class="notification-item">
+      <div class="notification-icon fee">
+        💰
+      </div>
+
+      <div class="notification-content">
+        <strong>Fee Reminder</strong>
+
+        <p>12 students have pending fees.</p>
+
+        <small>5 minutes ago</small>
+      </div>
+    </div>
+
+    <div class="notification-item">
+      <div class="notification-icon attendance">
+        📅
+      </div>
+
+      <div class="notification-content">
+        <strong>Attendance Submitted</strong>
+
+        <p>BCA First Year attendance completed.</p>
+
+        <small>30 minutes ago</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notification-footer">
+    <%= link_to "View All Notifications →", notifications_path %>
+  </div>
+
+</div>

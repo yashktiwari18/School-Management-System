@@ -81,7 +81,7 @@ body{
 .navbar-right{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 .logo{
@@ -92,30 +92,295 @@ body{
     letter-spacing: .3px;
 }
 
+.notification-wrapper {
+    position: relative;
+}
+
 .notification-btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    color: #1e293b;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-    width:40px;
-    height:40px;
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
 
-    border:none;
+    width: 20px;
+    height: 20px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:#F8FAFC;
+    background: #ef4444;
+    color: white;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    cursor:pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
 
-    transition:.25s;
+.notification-dropdown{
+    position:absolute;
+
+    top:58px;
+
+    right:-70px;
+
+    width:380px;
+
+    max-height:500px;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 12px 35px rgba(15,23,42,.12);
+
+    display:none;
+
+    z-index:999;
+}
+
+.notification-dropdown::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-8px;
+
+    right:82px;
+
+    width:16px;
+
+    height:16px;
+
+    background:white;
+
+    border-left:1px solid #ececec;
+
+    border-top:1px solid #ececec;
+
+    transform:rotate(45deg);
+
+}
+
+
+.notification-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+.notification-item {
+
+    display: flex;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    transition: .25s;
+
+    cursor: pointer;
+
+}
+
+
+.notification-item:hover {
+
+    background: #f7f9fc;
+
+}
+
+
+.notification-item.unread {
+
+    border-left: 4px solid #2563eb;
+
+    background: #fafcff;
+
+}
+
+.notification-footer {
+
+    text-align: center;
+
+    padding: 18px;
+
+    border-top: 1px solid #eee;
+
 }
 
 .notification-btn:hover{
 
     background:#EEF2FF;
 }
+
+
+/* ===========================
+   Notification Page
+=========================== */
+
+.notification-page{
+    padding:30px;
+}
+
+.notification-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.notification-header h2{
+    font-size:30px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:6px;
+}
+
+.notification-header p{
+    color:#64748b;
+}
+
+/* ===========================
+   Notification Cards
+=========================== */
+
+.notification-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.notification-card{
+    background:#fff;
+    border-radius:14px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+    transition:.25s;
+}
+
+.notification-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+
+.notification-card.unread{
+    border-left:5px solid #2563eb;
+}
+
+.notification-icon{
+    width:60px;
+    height:60px;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.primary{
+    background:#dbeafe;
+}
+
+.success{
+    background:#dcfce7;
+}
+
+.warning{
+    background:#fef3c7;
+}
+
+.danger{
+    background:#fee2e2;
+}
+
+.notification-content{
+    flex:1;
+}
+
+.notification-content h4{
+    margin:0;
+    font-size:18px;
+    color:#1e293b;
+}
+
+.notification-content p{
+    margin:6px 0;
+    color:#64748b;
+}
+
+.notification-content span{
+    font-size:13px;
+    color:#94a3b8;
+}
+
+.status{
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.unread-status{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.read-status{
+    background:#ecfdf5;
+    color:#16a34a;
+}
+
+.mark-read-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.mark-read-btn:hover{
+    background:#1d4ed8;
+}
+
+
 
 .admin-profile{
     display: flex;
@@ -890,51 +1155,109 @@ display:flex;
 
 }
 
-.overview-table{
 
-    display:flex;
 
-    flex-direction:column;
+.overview-summary{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin:30px 0;
 
 }
 
-.overview-row{
+.summary-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:28px;
 
     display:flex;
-
-    justify-content:space-between;
 
     align-items:center;
 
-    padding:18px 0;
+    gap:20px;
 
-    border-bottom:1px solid #EEF2F7;
-
-}
-
-.overview-row:last-child{
-
-    border-bottom:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
 
 }
 
-.overview-label{
+.summary-card .icon{
 
-    color:#64748B;
+    width:65px;
 
-    font-weight:500;
+    height:65px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:white;
 
 }
 
-.overview-value{
+.summary-card.blue .icon{
 
-    font-size:18px;
+    background:#2563eb;
+
+}
+
+.summary-card.green .icon{
+
+    background:#16a34a;
+
+}
+
+.summary-card.orange .icon{
+
+    background:#f59e0b;
+
+}
+
+.summary-card.purple .icon{
+
+    background:#9333ea;
+
+}
+
+.summary-card h4{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    margin-bottom:8px;
+
+}
+
+.summary-card h2{
+
+    font-size:34px;
 
     font-weight:700;
 
-    color:#2563EB;
+    color:#0f172a;
 
 }
+
+.summary-card p{
+
+    color:#94a3b8;
+
+    margin-top:5px;
+
+}
+
 
 /* Student Name Link */
 
@@ -1245,6 +1568,324 @@ display:flex;
 
 }
 
+.teacher-profile-link{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.25s;
+}
+
+.teacher-profile-link:hover{
+    color:#1d4ed8;
+    text-decoration:underline;
+}
+
+/* ===========================================
+   Teacher Profile
+=========================================== */
+
+.teacher-profile-page{
+    padding:30px;
+}
+
+.teacher-profile-header{
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+    margin-bottom:20px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    color:#1d4ed8;
+}
+
+.teacher-profile-card{
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+.teacher-avatar{
+    width:110px;
+    height:110px;
+    margin:auto;
+    border-radius:50%;
+    background:#2563eb;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    font-weight:bold;
+}
+
+.teacher-name{
+    margin-top:20px;
+    font-size:32px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.teacher-course,
+.teacher-qualification{
+    margin-top:10px;
+    font-size:17px;
+    color:#6b7280;
+}
+
+.teacher-course i,
+.teacher-qualification i{
+    margin-right:8px;
+    color:#2563eb;
+}
+
+.teacher-status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:20px;
+    padding:10px 18px;
+    border-radius:50px;
+    background:#dcfce7;
+    color:#15803d;
+    font-weight:600;
+}
+
+.teacher-actions{
+    margin-top:30px;
+}
+
+/* ===========================================
+   Teacher Information Cards
+=========================================== */
+
+.teacher-info-grid{
+    max-width:1000px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.info-card{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.info-card h3{
+    margin-bottom:25px;
+    font-size:22px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.info-card h3 i{
+    color:#2563eb;
+    margin-right:8px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-row span:first-child{
+    color:#6b7280;
+    font-weight:500;
+}
+
+.info-row strong{
+    color:#111827;
+    font-weight:600;
+}
+
+.status-active{
+    background:#dcfce7;
+    color:#15803d;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+}
+
+@media(max-width:768px){
+
+.teacher-info-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+/* ==========================================
+   Teacher Professional Summary
+========================================== */
+
+.teacher-summary-card{
+    max-width:1000px;
+    margin:30px auto;
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+
+.teacher-attendance-summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin:25px 0;
+}
+
+.summary-card{
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    transition:.25s;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+}
+
+.summary-icon{
+    width:58px;
+    height:58px;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:22px;
+}
+
+.summary-content h2{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+}
+
+.summary-content p{
+    margin-top:5px;
+    color:#6b7280;
+}
+
+.blue .summary-icon{
+    background:#2563eb;
+}
+
+.green .summary-icon{
+    background:#16a34a;
+}
+
+.red .summary-icon{
+    background:#dc2626;
+}
+
+.orange .summary-icon{
+    background:#f59e0b;
+}
+
+.summary-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.summary-header i{
+    font-size:28px;
+    color:#2563eb;
+}
+
+.summary-header h3{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.summary-text{
+    color:#4b5563;
+    line-height:1.9;
+    font-size:16px;
+    margin-bottom:25px;
+}
+
+.summary-details{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.summary-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    background:#f8fafc;
+    border-radius:12px;
+}
+
+.summary-item i{
+    color:#2563eb;
+    font-size:20px;
+}
+
+.summary-item span{
+    color:#374151;
+    font-weight:500;
+}
+
+@media(max-width:768px){
+
+.summary-details{
+    grid-template-columns:1fr;
+}
+
+}
+
+.btn-edit-profile{
+    display:inline-block;
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-edit-profile:hover{
+    background:#1d4ed8;
+    color:white;
+    transform:translateY(-2px);
+}
+
 @media(max-width:992px){
 
     .dashboard-grid{
@@ -1268,6 +1909,125 @@ display:flex;
     padding:24px;
 
 }
+
+/* =====================================================
+   ATTENDANCE WORKSPACE
+===================================================== */
+
+.attendance-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.attendance-header h2{
+    font-size:32px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:6px;
+}
+
+.attendance-header p{
+    color:#64748b;
+    font-size:15px;
+}
+
+.attendance-tabs{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#ffffff;
+    padding:10px;
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    margin-bottom:30px;
+    overflow-x:auto;
+}
+
+.attendance-tab{
+    text-decoration:none;
+    color:#64748b;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:10px;
+    transition:.25s;
+    white-space:nowrap;
+}
+
+.attendance-tab:hover{
+    background:#eef4ff;
+    color:#2563eb;
+}
+
+.attendance-tab.active{
+    background:#2563eb;
+    color:#fff;
+}
+
+.attendance-filter-card{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.05);
+}
+
+.attendance-filter-header{
+    margin-bottom:25px;
+}
+
+.attendance-filter-header h3{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+}
+
+.attendance-filter-header p{
+    color:#6b7280;
+    margin-top:5px;
+}
+
+.attendance-filters{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.filter-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.filter-group label{
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.filter-control{
+    height:46px;
+    border:1px solid #dfe3eb;
+    border-radius:10px;
+    padding:0 12px;
+}
+
+.attendance-search-row{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.attendance-search{
+    flex:1;
+    height:46px;
+    border:1px solid #dfe3eb;
+    border-radius:10px;
+    padding:0 15px;
+}
+
+
 
 .card-icon{
 

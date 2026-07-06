@@ -1,0 +1,38 @@
+
+<div class="attendance-tabs">
+
+  <%= link_to "Overview",
+      workspace_attendances_path(tab: "overview"),
+      class: "attendance-tab #{@tab == 'overview' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+  <%= link_to "Student Attendance",
+      workspace_attendances_path(tab: "student"),
+      class: "attendance-tab #{@tab == 'student' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+  <%= link_to "Teacher Attendance",
+      workspace_attendances_path(tab: "teacher"),
+      class: "attendance-tab #{@tab == 'teacher' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+  <%= link_to "Reports",
+      workspace_attendances_path(tab: "reports"),
+      class: "attendance-tab #{@tab == 'reports' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+  <%= link_to "Leave Management",
+      workspace_attendances_path(tab: "leave"),
+      class: "attendance-tab #{@tab == 'leave' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+  <%= link_to "Settings",
+      workspace_attendances_path(tab: "settings"),
+      class: "attendance-tab #{@tab == 'settings' ? 'active' : ''}",
+      data: { turbo_frame: "attendance_content" } %>
+
+</div>
+
+<%= turbo_frame_tag "attendance_content" do %>
+  <%= render partial %>
+<% end %>

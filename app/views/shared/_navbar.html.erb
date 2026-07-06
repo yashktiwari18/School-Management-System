@@ -13,29 +13,25 @@
   <!-- Right -->
 
   <div class="navbar-right">
+      <div class="notification-wrapper">
 
-    <button class="notification-btn">
+        <%= link_to notifications_path, class: "notification-btn" do %>
+          <i class="bi bi-bell"></i>
+          <span class="notification-badge">3</span>
+        <% end %>
 
-      🔔
-
-    </button>
-
-    <div class="admin-profile">
-
-      <div class="avatar">
-
-        <%= current_admin.name.first.upcase %>
+        <%= render "shared/notification_dropdown" %>
 
       </div>
 
+    <div class="admin-profile">
+      <div class="avatar">
+        <%= current_admin.name.first.upcase %>
+      </div>
       <div>
-
         <div class="admin-name">
-
           <%= current_admin.name %>
-
         </div>
-
         <small>
 
           Administrator

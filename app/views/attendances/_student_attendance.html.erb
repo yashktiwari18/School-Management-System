@@ -1,0 +1,120 @@
+<div class="attendance-filter-card">
+
+  <div class="attendance-filter-header">
+    <h3>Student Attendance</h3>
+    <p>Manage and monitor attendance records across all classes.</p>
+  </div>
+
+  <div class="attendance-filters">
+
+    <div class="filter-group">
+      <label>Course</label>
+
+      <%= select_tag :course,
+          options_from_collection_for_select(@courses, :id, :course_name),
+          include_blank: "All Courses",
+          class: "filter-control" %>
+    </div>
+
+    <div class="filter-group">
+      <label>Student</label>
+
+      <%= select_tag :student,
+          options_from_collection_for_select(@students, :id, :student_name),
+          include_blank: "All Students",
+          class: "filter-control" %>
+    </div>
+
+    <div class="filter-group">
+      <label>Date</label>
+
+      <%= date_field_tag :attendance_date,
+          Date.today,
+          class: "filter-control" %>
+    </div>
+
+    <div class="filter-group">
+      <label>Status</label>
+
+      <%= select_tag :status,
+          options_for_select([
+            "Present",
+            "Absent",
+            "Late",
+            "Leave"
+          ]),
+          include_blank: "All Status",
+          class: "filter-control" %>
+    </div>
+
+  </div>
+
+  <div class="attendance-search-row">
+
+    <%= text_field_tag :search,
+        nil,
+        placeholder: "Search by Student Name or Roll Number...",
+        class: "attendance-search" %>
+
+    <%= link_to "#", class: "btn-primary" do %>
+      <i class="bi bi-search"></i>
+      View Records
+    <% end %>
+
+    <%= link_to new_attendance_path, class: "btn-success" do %>
+      <i class="bi bi-plus-circle"></i>
+      Mark Attendance
+    <% end %>
+
+  </div>
+
+</div>
+
+
+<div class="teacher-attendance-summary">
+
+  <div class="summary-card blue">
+    <div class="summary-icon">
+      <i class="bi bi-mortarboard-fill"></i>
+    </div>
+
+    <div class="summary-content">
+      <h2><%= @students.count %></h2>
+      <p>Total Students</p>
+    </div>
+  </div>
+
+  <div class="summary-card green">
+    <div class="summary-icon">
+      <i class="bi bi-person-check-fill"></i>
+    </div>
+
+    <div class="summary-content">
+      <h2>0</h2>
+      <p>Present Today</p>
+    </div>
+  </div>
+
+  <div class="summary-card red">
+    <div class="summary-icon">
+      <i class="bi bi-person-x-fill"></i>
+    </div>
+
+    <div class="summary-content">
+      <h2>0</h2>
+      <p>Absent Today</p>
+    </div>
+  </div>
+
+  <div class="summary-card orange">
+    <div class="summary-icon">
+      <i class="bi bi-graph-up-arrow"></i>
+    </div>
+
+    <div class="summary-content">
+      <h2>0%</h2>
+      <p>Attendance Rate</p>
+    </div>
+  </div>
+
+</div>

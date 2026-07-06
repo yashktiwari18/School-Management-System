@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   # Login Routes
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
@@ -14,5 +15,10 @@ Rails.application.routes.draw do
   resources :students
   resources :fees
   resources :reports, only: [ :index ]
-  resources :attendances
+  resources :attendances do
+    collection do
+      get :workspace
+    end
+  end
+  resources :notifications, only: [:index, :show]
 end
