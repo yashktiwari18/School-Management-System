@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "admin_profiles/show"
+  get "admin_profiles/edit"
   resources :notifications
   # Login Routes
   get "/login", to: "sessions#new"
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index"
 
   resources :courses
+  resource :admin_profile, only: [ :show, :edit, :update ]
   resources :teachers
   resources :students
   resources :admins, only: [ :new, :create ]

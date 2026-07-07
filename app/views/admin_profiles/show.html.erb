@@ -1,0 +1,125 @@
+<div class="admin-profile-page">
+
+  <div class="admin-profile-header">
+
+    <div class="profile-avatar">
+      <%= @admin.name.first.upcase %>
+    </div>
+
+    <h2><%= @admin.name %></h2>
+
+    <p class="profile-role">
+      <i class="bi bi-person-badge"></i>
+      Super Administrator
+    </p>
+
+    <span class="status-badge active">
+      <i class="bi bi-check-circle-fill"></i>
+      Active
+    </span>
+
+    <div class="profile-meta">
+
+      <div>
+        <strong>Member Since</strong><br>
+        <%= @admin.created_at.strftime("%d %b %Y") %>
+      </div>
+
+      <div>
+        <strong>Last Login</strong><br>
+        Today
+      </div>
+
+    </div>
+
+    <div class="profile-actions">
+
+      <%= link_to edit_admin_profile_path,
+          class: "btn btn-primary" do %>
+
+        <i class="bi bi-pencil-square"></i>
+        Edit Profile
+
+      <% end %>
+
+      <button class="btn btn-outline-primary">
+
+        <i class="bi bi-shield-lock"></i>
+
+        Change Password
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="admin-profile-grid">
+
+  <!-- Personal Information -->
+  <div class="profile-card">
+
+    <div class="card-header">
+      <h4>
+        <i class="bi bi-person-circle"></i>
+        Personal Information
+      </h4>
+    </div>
+
+    <div class="info-item">
+      <span>Full Name</span>
+      <strong><%= @admin.name %></strong>
+    </div>
+
+    <div class="info-item">
+      <span>Email</span>
+      <strong><%= @admin.email.presence || "-" %></strong>
+    </div>
+
+    <div class="info-item">
+      <span>Phone</span>
+      <strong><%= @admin.phone.presence || "-" %></strong>
+    </div>
+
+  </div>
+
+  <!-- Account Information -->
+  <div class="profile-card">
+
+    <div class="card-header">
+      <h4>
+        <i class="bi bi-shield-lock"></i>
+        Account Information
+      </h4>
+    </div>
+
+    <div class="info-item">
+      <span>Username</span>
+      <strong><%= @admin.username %></strong>
+    </div>
+
+    <div class="info-item">
+      <span>Role</span>
+      <strong>Super Administrator</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Status</span>
+
+      <span class="badge bg-success">
+        Active
+      </span>
+    </div>
+
+    <div class="info-item">
+      <span>Member Since</span>
+      <strong><%= @admin.created_at.strftime("%d %b %Y") %></strong>
+    </div>
+
+  </div>
+
+</div>
+
+</div>

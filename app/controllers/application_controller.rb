@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ActivityLogger
   helper_method :current_admin, :logged_in?
   before_action :check_session_timeout
 
@@ -6,7 +7,17 @@ class ApplicationController < ActionController::Base
   private
 
   def current_admin
-    @current_admin ||= Admin.find_by(id: session[:admin_id])
+    if session[:admin_id]
+      @current_admin ||= Admin.find_by(id: session[:admin_id])
+    elsif cookies.signed[:admin_id]
+      admin = Admin.find_by(id: cookies.signed[:admin_id])
+
+      if admin
+        session[:admin_id] = admin.id
+        session[:last_seen_at] = Time.current
+        @current_admin = admin
+      end
+    end
   end
 
   def logged_in?

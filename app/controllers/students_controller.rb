@@ -20,7 +20,16 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      redirect_to students_path, notice: "Student created successfully."
+
+      log_activity(
+        action: "Created",
+        module_name: "Student",
+        description: "Added student #{@student.student_name}"
+      )
+
+      redirect_to students_path,
+                  notice: "Student created successfully."
+
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,6 +40,11 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
+      log_activity(
+    action: "Updated",
+    module_name: "Student",
+    description: "Updated student #{@student.student_name}"
+  )
       redirect_to students_path, notice: "Student updated successfully."
     else
       render :edit, status: :unprocessable_entity
@@ -38,6 +52,11 @@ class StudentsController < ApplicationController
   end
 
   def destroy
+    log_activity(
+  action: "Deleted",
+  module_name: "Student",
+  description: "Deleted student #{@student.student_name}"
+)
     @student.destroy
     redirect_to students_path, notice: "Student deleted successfully."
   end

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_07_074122) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_07_115757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string "action"
+    t.bigint "admin_id", null: false
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "module_name"
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_activity_logs_on_admin_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -89,6 +99,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_07_074122) do
     t.index ["course_id"], name: "index_teachers_on_course_id"
   end
 
+  add_foreign_key "activity_logs", "admins"
   add_foreign_key "attendances", "students"
   add_foreign_key "fees", "students"
   add_foreign_key "students", "courses"

@@ -49,13 +49,9 @@
 
 <% else %>
 
-    <div class="container mt-5">
+    <%= render "shared/flash" %>
 
-        <%= render "shared/flash" %>
-
-        <%= yield %>
-
-    </div>
+    <%= yield %>
 
 <% end %>
 

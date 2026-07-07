@@ -23,7 +23,8 @@
         <%= render "shared/notification_dropdown" %>
 
       </div>
-
+    
+    <%= link_to admin_profile_path, class: "admin-profile-link" do %>
     <div class="admin-profile">
       <div class="avatar">
         <%= current_admin.name.first.upcase %>
@@ -41,7 +42,7 @@
       </div>
 
     </div>
-
+    <% end %>
     <%= button_to "Logout",
           logout_path,
           method: :delete,

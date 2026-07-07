@@ -10,6 +10,12 @@ class SessionsController < ApplicationController
     session[:admin_id] = admin.id
     session[:last_seen_at] = Time.current
 
+    if params[:remember_me] == "1"
+      cookies.permanent.signed[:admin_id] = admin.id
+    else
+      cookies.delete(:admin_id)
+    end
+
     if admin&.authenticate(params[:password])
       session[:admin_id] = admin.id
       redirect_to dashboard_path, notice: "Login Successful!"
@@ -21,10 +27,12 @@ class SessionsController < ApplicationController
 
   def destroy
   reset_session
+  cookies.delete(:admin_id)
 
   redirect_to login_path,
               notice: "Logged out successfully."
   end
+
 
   private
 
