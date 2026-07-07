@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :check_session_timeout, only: [ :destroy ]
   before_action :redirect_if_logged_in, only: [ :new ]
     def new
     end
@@ -19,11 +20,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:admin_id] = nil
-    redirect_to login_path, notice: "Logged out successfully."
+  reset_session
 
-    reset_session
-    redirect_to login_path
+  redirect_to login_path,
+              notice: "Logged out successfully."
   end
 
   private

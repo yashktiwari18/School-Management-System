@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :teachers
   resources :students
+  resources :admins, only: [ :new, :create ]
   resources :fees
   resources :reports, only: [ :index ]
   resources :attendances do
@@ -20,5 +21,5 @@ Rails.application.routes.draw do
       get :workspace
     end
   end
-  resources :notifications, only: [:index, :show]
+  resources :notifications, only: [ :index, :show ]
 end

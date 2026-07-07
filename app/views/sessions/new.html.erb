@@ -1,23 +1,80 @@
-<h1>School Management System</h1>
+<div class="login-page">
 
-<h2>Admin Login</h2>
+  <div class="login-left">
 
-<%= form_with url: login_path, local: true do |form| %>
+    <div class="login-brand">
+      <h1>School Management</h1>
+      <p>
+        Modern School ERP for managing students, teachers,
+        attendance, courses and reports.
+      </p>
+    </div>
 
-  <div>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
+    <div class="login-card">
+
+      <h2>Admin Login</h2>
+
+      <%= form_with url: login_path, local: true do |f| %>
+
+        <div class="form-group">
+          <label>Username</label>
+
+          <%= text_field_tag :username,
+                params[:username],
+                class: "login-input",
+                placeholder: "Enter Username" %>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <%= password_field_tag :password,
+                nil,
+                class: "login-input",
+                placeholder: "Enter Password" %>
+        </div>
+
+        <div class="login-options">
+
+          <label class="remember-me">
+            <input type="checkbox">
+            Remember Me
+          </label>
+
+          <a href="#">Forgot Password?</a>
+
+        </div>
+
+        <%= submit_tag "Login",
+              class: "login-btn" %>
+
+      <% end %>
+
+
+      
+
+    </div>
+
   </div>
 
-  <br>
+  <div class="login-right">
 
-  <div>
-    <%= form.label :password %><br>
-    <%= form.password_field :password %>
+      <div class="school-icon">
+
+          🎓
+
+      </div>
+
+      <h2>
+        Welcome to School ERP
+      </h2>
+
+      <p>
+        Manage Students, Teachers, Attendance,
+        Courses, Fees and Reports
+        from one dashboard.
+      </p>
+
   </div>
 
-  <br>
-
-  <%= form.submit "Login" %>
-
-<% end %>
+</div>

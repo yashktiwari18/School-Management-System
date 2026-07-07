@@ -1,0 +1,143 @@
+<div class="login-page">
+
+  <div class="login-left">
+
+    <div class="login-brand">
+      <h1>School Management</h1>
+
+      <p>
+        Create your School Administrator account to start managing
+        students, teachers, attendance, fees and reports.
+      </p>
+    </div>
+
+    <div class="login-card">
+
+      <h2>Create School Administrator</h2>
+
+      <%= form_with model: @admin, local: true do |f| %>
+
+        <% if @admin.errors.any? %>
+
+          <div class="error-box">
+
+            <h4>
+              Please fix the following errors:
+            </h4>
+
+            <ul>
+
+              <% @admin.errors.full_messages.each do |message| %>
+
+                <li><%= message %></li>
+
+              <% end %>
+
+            </ul>
+
+          </div>
+
+        <% end %>
+
+        <div class="form-group">
+
+          <%= f.label :name, "Full Name" %>
+
+          <%= f.text_field :name,
+                class: "login-input",
+                placeholder: "Enter Full Name" %>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :username %>
+
+          <%= f.text_field :username,
+                class: "login-input",
+                placeholder: "Choose Username" %>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :email %>
+
+          <%= f.email_field :email,
+                class: "login-input",
+                placeholder: "Enter Email" %>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :phone %>
+
+          <%= f.telephone_field :phone,
+                class: "login-input",
+                placeholder: "10 Digit Phone Number" %>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :password %>
+
+          <%= f.password_field :password,
+                class: "login-input",
+                placeholder: "Password" %>
+
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :password_confirmation %>
+
+          <%= f.password_field :password_confirmation,
+                class: "login-input",
+                placeholder: "Confirm Password" %>
+
+        </div>
+
+        <%= f.submit "Create Administrator",
+              class: "login-btn" %>
+
+      <% end %>
+
+      <div class="first-admin">
+
+        <p>Already have an account?</p>
+
+        <%= link_to "Back to Login",
+              login_path,
+              class: "signup-link" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="login-right">
+
+      <div class="school-icon">
+
+          🎓
+
+      </div>
+
+      <h2>School ERP Setup</h2>
+
+      <p>
+
+        Create your first administrator account.
+
+        After this, all management of students,
+        teachers and school data will happen
+        through this account.
+
+      </p>
+
+  </div>
+
+</div>

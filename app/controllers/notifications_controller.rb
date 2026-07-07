@@ -66,6 +66,11 @@ class NotificationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def notification_params
-      params.expect(notification: [ :title, :message, :notification_type, :is_read ])
-    end
+      params.require(:notification).permit(
+      :title,
+      :message,
+      :notification_type,
+      :is_read
+  )
+end
 end

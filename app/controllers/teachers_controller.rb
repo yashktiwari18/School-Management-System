@@ -55,6 +55,7 @@ end
       :teacher_name,
       :email,
       :phone,
+      :gender,
       :education,
       :course_id
     )

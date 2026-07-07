@@ -21,8 +21,12 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, class: "form-control" %>
+    <%= form.telephone_field :phone,
+      class: "form-control",
+      maxlength: 10,
+      minlength: 10,
+      pattern: "[0-9]{10}",
+      placeholder: "9876543210" %>
   </div>
 
   <div class="mb-3">

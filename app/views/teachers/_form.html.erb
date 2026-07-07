@@ -26,6 +26,14 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :gender %>
+    <%= form.select :gender,
+          ["Male", "Female", "Other"],
+          { prompt: "Select Gender" },
+          class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :education %>
     <%= form.text_field :education, class: "form-control" %>
   </div>

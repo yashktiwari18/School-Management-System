@@ -20,6 +20,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
+          <th>Gender</th>
           <th>Education</th>
           <th>Course</th>
         </tr>
@@ -40,11 +41,8 @@
             <td><%= teacher.email %></td>
             <td><%= teacher.phone %></td>
             <td><%= teacher.education %></td>
-
-            <td>
-              <%= teacher.course.course_name %>
-            </td>
-
+            <td><%= teacher.course.course_name %></td>
+            <td><%= teacher.gender %></td>
           </tr>
 
         <% end %>
