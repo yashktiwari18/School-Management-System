@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_07_115757) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_08_080119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_07_115757) do
     t.decimal "due_fee"
     t.decimal "paid_fee"
     t.date "payment_date"
+    t.string "payment_mode"
     t.string "status"
     t.bigint "student_id", null: false
     t.decimal "total_fee"

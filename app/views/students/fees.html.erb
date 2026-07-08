@@ -1,0 +1,190 @@
+<div class="fee-page">
+
+  <div class="fee-header">
+
+    <%= link_to student_path(@student), class: "btn btn-outline-secondary" do %>
+      <i class="bi bi-arrow-left"></i>
+      Back to Student
+    <% end %>
+
+    <h2>Fee Collection</h2>
+
+    <p>
+      Collect and manage student fee payments.
+    </p>
+
+  </div>
+
+  <div class="student-info-card">
+
+    <div class="student-info-title">
+      <i class="bi bi-person-circle"></i>
+      Student Information
+    </div>
+
+    <div class="student-info-grid">
+
+      <div>
+        <span>Name</span>
+        <strong><%= @student.student_name %></strong>
+      </div>
+
+      <div>
+        <span>Student ID</span>
+        <strong>STD-<%= @student.id.to_s.rjust(4, "0") %></strong>
+      </div>
+
+      <div>
+        <span>Course</span>
+        <strong><%= @student.course.course_name %></strong>
+      </div>
+
+      <div>
+        <span>Admission Date</span>
+        <strong><%= @student.admission_date.strftime("%d %b %Y") %></strong>
+      </div>
+
+      <div>
+        <span>Phone</span>
+        <strong><%= @student.phone %></strong>
+      </div>
+
+      <div>
+        <span>Status</span>
+        <span class="status-badge">
+          Active Student
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="fee-summary-card">
+
+    <h3>
+        <i class="bi bi-wallet2"></i>
+        Fee Summary
+    </h3>
+
+    <div class="fee-summary-grid">
+
+        <div class="summary-item">
+            <span>Total Fee</span>
+        <strong>
+            <%= number_to_currency(
+            @fee.total_fee,
+            unit: "₹",
+            precision: 0
+            ) %>
+        </strong>
+        </div>
+
+        <div class="summary-item">
+            <span>Paid Amount</span>
+            <strong class="text-success">
+                <%= number_to_currency(
+                @fee.paid_fee,
+                unit: "₹",
+                precision: 0
+                ) %>
+            </strong>
+        </div>
+
+        <div class="summary-item">
+            <span>Pending Amount</span>
+            <strong class="text-danger">
+                <%= number_to_currency(
+                @fee.due_fee,
+                unit: "₹",
+                precision: 0
+                ) %>
+            </strong>
+        </div>
+
+        <div class="summary-item">
+            <span>Last Payment</span>
+            <strong>
+                <%= @fee.payment_date.present? ? @fee.payment_date.strftime("%d %b %Y") : "-" %>
+            </strong>
+        </div>
+
+        <div class="summary-item">
+            <span>Status</span>
+
+            <span class="badge
+                <%= @fee.status == "Paid" ? "bg-success" :
+                    @fee.status == "Partial" ? "bg-warning" :
+                    "bg-danger" %>">
+
+                <%= @fee.status %>
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="payment-card">
+
+  <h3>
+    <i class="bi bi-cash-stack"></i>
+    Collect Payment
+  </h3>
+
+  <%= form_with url: collect_fee_student_path(@student),
+                method: :patch,
+                local: true do |f| %>
+
+    <div class="payment-grid">
+
+      <div class="form-group">
+        <%= f.label :payment_date %>
+        <%= f.date_field :payment_date,
+              value: Date.current,
+              class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :payment_amount %>
+        <%= f.number_field :payment_amount,
+              class: "form-control",
+              min: 1,
+              required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :payment_mode %>
+        <%= f.select :payment_mode,
+            ["Cash","UPI","Card","Net Banking","Cheque"],
+            {},
+            class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :reference_number %>
+        <%= f.text_field :reference_number,
+              class: "form-control" %>
+      </div>
+
+      <div class="form-group full-width">
+        <%= f.label :remarks %>
+        <%= f.text_area :remarks,
+              rows: 3,
+              class: "form-control" %>
+      </div>
+
+    </div>
+
+    <%= f.submit "Collect Fee",
+          class: "btn btn-success btn-lg mt-3" %>
+
+  <% end %>
+
+</div>
+
+</div>

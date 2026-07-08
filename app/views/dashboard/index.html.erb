@@ -178,130 +178,263 @@
 
     <div class="section-header">
 
-        <div>
+        <div class="dashboard-tabs">
 
-            <h4 class="section-title">
-                Recent Admissions
-            </h4>
+          <button id="admissions-tab"
+          class="dashboard-tab"
+                  data-tab="admissions">
+              Recent Admissions
+          </button>
 
-            <p class="section-subtitle">
-                Latest students admitted to the school
-            </p>
+          <button id="payments-tab"
+          class="dashboard-tab"
+                  data-tab="payments">
+              Recent Payments
+          </button>
 
         </div>
-
-  
     </div>
+
+    <div class="dashboard-content">
+
+  <!-- ========================= -->
+  <!-- Recent Admissions -->
+  <!-- ========================= -->
+  <div id="admissions-content">
 
     <div class="card-footer-custom">
 
-    <small class="text-muted">
-
+      <small class="text-muted">
         Showing latest
         <strong><%= @recent_students.count %></strong>
         admissions
+      </small>
 
-    </small>
+      <%= link_to students_path,
+          class: "view-all-link" do %>
 
-    <%= link_to students_path,
-        class: "view-all-link" do %>
+          View All Students
+          <i class="bi bi-arrow-right"></i>
 
-        View All Students
+      <% end %>
 
-        <i class="bi bi-arrow-right"></i>
-
-    <% end %>
-
-</div>
+    </div>
 
     <table class="table admission-table align-middle">
 
-        <thead>
+      <thead>
 
-            <tr>
+        <tr>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Admission Date</th>
+          <th>Status</th>
+        </tr>
 
-                <th>Student</th>
-                <th>Course</th>
-                <th>Admission Date</th>
-                <th>Status</th>
+      </thead>
 
-            </tr>
+      <tbody>
 
-        </thead>
+        <% @recent_students.each do |student| %>
 
-        <tbody>
+          <tr>
 
-            <% @recent_students.each do |student| %>
+            <td>
 
-                <tr>
+              <strong>
+                <%= link_to student.student_name,
+                    student_path(student),
+                    class: "student-name-link" %>
+              </strong>
 
-                    <td>
-                        <strong><%= link_to student.student_name,
-                        student_path(student),
-                        class: "student-name-link" %>
-                        </strong>
-                        
-                        <br>
+              <br>
 
-                        <small class="text-muted">
-                            <%= student.email %>
-                        </small>
-                    </td>
+              <small class="text-muted">
+                <%= student.email %>
+              </small>
 
-                    <td>
+            </td>
 
-                        <span class="course-badge">
-                        <i class="bi bi-book-half"></i>
-                          <%= student.course.course_name %>
-                      </span>
-                    </td>
-                    <td>
+            <td>
 
-    <% days = (Date.current - student.created_at.to_date).to_i %>
+              <span class="course-badge">
+                <i class="bi bi-book-half"></i>
+                <%= student.course.course_name %>
+              </span>
 
-    <% if days == 0 %>
+            </td>
 
-        <span class="date-badge today">
-            Today
-        </span>
+            <td>
 
-    <% elsif days == 1 %>
+              <% days = (Date.current - student.created_at.to_date).to_i %>
 
-        <span class="date-badge yesterday">
-            Yesterday
-        </span>
+              <% if days == 0 %>
 
-    <% elsif days <= 7 %>
+                <span class="date-badge today">
+                  Today
+                </span>
 
-        <span class="date-badge recent">
-            <%= "#{days} days ago" %>
-        </span>
+              <% elsif days == 1 %>
 
-    <% else %>
+                <span class="date-badge yesterday">
+                  Yesterday
+                </span>
 
-        <span class="date-badge">
-            <%= student.created_at.strftime("%d %b %Y") %>
-        </span>
+              <% elsif days <= 7 %>
 
-    <% end %>
+                <span class="date-badge recent">
+                  <%= "#{days} days ago" %>
+                </span>
 
-</td>
+              <% else %>
 
-                    <td>
+                <span class="date-badge">
+                  <%= student.created_at.strftime("%d %b %Y") %>
+                </span>
 
-                        <span class="status-badge new">
-                          New Admission
-                        </span>
+              <% end %>
 
-                    </td>
+            </td>
 
-                </tr>
+            <td>
 
-            <% end %>
+              <span class="status-badge new">
+                New Admission
+              </span>
 
-        </tbody>
+            </td>
+
+          </tr>
+
+        <% end %>
+
+      </tbody>
 
     </table>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- Recent Payments -->
+  <!-- ========================= -->
+  <div id="payments-content" style="display:none;">
+
+  <% if @recent_fees.any? %>
+
+    <div class="card-footer-custom">
+
+      <small class="text-muted">
+        Showing latest
+        <strong><%= @recent_fees.count %></strong>
+        payments
+      </small>
+
+      <%= link_to fees_path, class: "view-all-link" do %>
+        View Fee Records
+        <i class="bi bi-arrow-right"></i>
+      <% end %>
+
+    </div>
+
+    <table class="table admission-table align-middle">
+
+      <thead>
+
+        <tr>
+          <th>Student</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Mode</th>
+          <th>Status</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+      <% @recent_fees.each do |fee| %>
+
+        <tr>
+
+          <td>
+
+            <strong>
+              <%= link_to fee.student.student_name,
+                          student_path(fee.student),
+                          class: "student-name-link" %>
+            </strong>
+
+            <br>
+
+            <small class="text-muted">
+
+              STD-<%= fee.student.id.to_s.rjust(4,"0") %>
+
+            </small>
+
+          </td>
+
+          <td>
+
+            <strong class="text-success">
+
+              ₹<%= number_with_delimiter(fee.paid_fee.to_i) %>
+
+            </strong>
+
+          </td>
+
+          <td>
+
+            <%= fee.payment_date.strftime("%d %b %Y") %>
+
+          </td>
+
+          <td>
+
+            <span class="course-badge">
+
+              <%= fee.payment_mode.presence || "Cash" %>
+
+            </span>
+
+          </td>
+
+          <td>
+
+            <span class="badge bg-success">
+
+              Paid
+
+            </span>
+
+          </td>
+
+        </tr>
+
+      <% end %>
+
+      </tbody>
+
+    </table>
+
+  <% else %>
+
+    <div class="empty-state">
+
+      <i class="bi bi-cash-stack"></i>
+
+      <h4>No Recent Payments</h4>
+
+      <p>
+        Recent fee collections will appear here.
+      </p>
+
+    </div>
+
+  <% end %>
+
+</div>
 
 </div>
 

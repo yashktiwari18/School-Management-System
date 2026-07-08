@@ -21,3 +21,36 @@ document.addEventListener("turbo:load", () => {
     }
   });
 });
+
+
+document.addEventListener("turbo:load", () => {
+
+    const admissionsTab = document.getElementById("admissions-tab");
+    const paymentsTab = document.getElementById("payments-tab");
+
+    const admissionsContent = document.getElementById("admissions-content");
+    const paymentsContent = document.getElementById("payments-content");
+
+    if (!admissionsTab || !paymentsTab) return;
+
+    admissionsTab.addEventListener("click", () => {
+
+        admissionsTab.classList.add("active");
+        paymentsTab.classList.remove("active");
+
+        admissionsContent.style.display = "block";
+        paymentsContent.style.display = "none";
+
+    });
+
+    paymentsTab.addEventListener("click", () => {
+
+        paymentsTab.classList.add("active");
+        admissionsTab.classList.remove("active");
+
+        paymentsContent.style.display = "block";
+        admissionsContent.style.display = "none";
+
+    });
+
+});

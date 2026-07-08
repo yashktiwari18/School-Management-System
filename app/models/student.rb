@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :course
+  has_one :fee, dependent: :destroy
   has_many :fees, dependent: :destroy
   has_many :attendances, dependent: :destroy
 

@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :courses
   resource :admin_profile, only: [ :show, :edit, :update ]
   resources :teachers
-  resources :students
+  resources :students do
+    member do
+      get :fees
+      patch :collect_fee
+    end
+  end
   resources :admins, only: [ :new, :create ]
   resources :fees
   resources :reports, only: [ :index ]

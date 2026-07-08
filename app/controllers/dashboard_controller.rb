@@ -12,5 +12,10 @@ class DashboardController < ApplicationController
                       .includes(:course)
                       .order(created_at: :desc)
                       .limit(5)
-end
+
+  @recent_fees = Fee.includes(:student)
+                  .where("paid_fee > 0")
+                  .order(payment_date: :desc)
+                  .limit(5)
+  end
 end
