@@ -36,6 +36,14 @@ class StudentsController < ApplicationController
 
     if @student.save
 
+      Fee.create!(
+      student: @student,
+      total_fee: @student.course.fees,
+      paid_fee: 0,
+      due_fee: @student.course.fees,
+      status: "Pending"
+      )
+
       log_activity(
         action: "Created",
         module_name: "Student",

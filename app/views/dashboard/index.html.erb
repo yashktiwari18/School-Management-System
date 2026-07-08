@@ -359,9 +359,13 @@
           <td>
 
             <strong>
-              <%= link_to fee.student.student_name,
-                          student_path(fee.student),
-                          class: "student-name-link" %>
+                <%= link_to fee.student.student_name,
+                fees_student_path(
+                  fee.student,
+                  from: "fees",
+                  context: "fees"
+                ),
+                class: "student-name-link" %>
             </strong>
 
             <br>

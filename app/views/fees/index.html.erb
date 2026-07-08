@@ -34,7 +34,7 @@
 
       <div class="stats-body">
 
-        <h2>₹<%= @total_collection %></h2>
+        <h2>₹<%= number_with_delimiter(@total_collection.to_i) %></h2>
 
         <h6>Total Collection</h6>
 
@@ -62,7 +62,7 @@
 
       <div class="stats-body">
 
-        <h2>₹<%= @total_paid %></h2>
+        <h2>₹<%= number_with_delimiter(@total_paid.to_i) %></h2>
 
         <h6>Paid</h6>
 
@@ -90,7 +90,7 @@
 
       <div class="stats-body">
 
-        <h2>₹<%= @total_pending %></h2>
+        <h2>₹<%= number_with_delimiter(@total_pending.to_i) %></h2>
 
         <h6>Pending</h6>
 
@@ -145,17 +145,24 @@
 
   <div class="table-actions">
 
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search student...">
+    <%= form_with url: fees_path, method: :get, local: true, class: "d-flex gap-3 mb-3" do %>
 
-    <select class="form-select">
-      <option>All Status</option>
-      <option>Paid</option>
-      <option>Pending</option>
-      <option>Overdue</option>
-    </select>
+      <%= text_field_tag :search,
+            params[:search],
+            placeholder: "Search student...",
+            class: "form-control" %>
+
+      <%= select_tag :status,
+          options_for_select(
+            ["All Status", "Pending", "Partial", "Paid"],
+            params[:status]
+          ),
+          class: "form-select" %>
+
+      <%= submit_tag "Search",
+          class: "btn btn-primary" %>
+
+    <% end %>
 
   </div>
 
@@ -174,7 +181,7 @@
             <th>Paid</th>
             <th>Due</th>
             <th>Status</th>
-            <th width="180">Action</th>
+            
 
         </tr>
 
@@ -187,7 +194,13 @@
             <tr>
 
                 <td>
-                    <strong><%= fee.student.student_name %></strong>
+                   <%= link_to fee.student.student_name,
+                    fees_student_path(
+                      fee.student,
+                      from: "fees",
+                      context: "fees"
+                    ),
+                    class: "student-name-link" %>
                 </td>
 
                 <td>
@@ -201,31 +214,17 @@
                 <td>
                     ₹<%= fee.paid_fee %>
                 </td>
-
                 <td>
                     ₹<%= fee.due_fee %>
                 </td>
-
                 <td>
-
                     <span class="status-badge">
                         <%= fee.status %>
                     </span>
-
                 </td>
-
-                <td>
-
-                    Edit | Delete
-
-                </td>
-
             </tr>
-
         <% end %>
-
     </tbody>
-
 </table>
 
 </div>

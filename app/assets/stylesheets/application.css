@@ -2860,3 +2860,28 @@ display:flex;
     background:#3563E9;
     color:#fff;
 }
+
+
+.navbar-datetime{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-right:20px;
+}
+
+.navbar-datetime .date,
+.navbar-datetime .time{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#000000;
+    font-size:14px;
+    font-weight:500;
+
+
+}
+
+.navbar-datetime i{
+    color:#2563eb;
+    font-size:16px;
+}

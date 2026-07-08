@@ -2,10 +2,27 @@
 
   <div class="fee-header">
 
-    <%= link_to student_path(@student), class: "btn btn-outline-secondary" do %>
+    <% if params[:from] == "fees" %>
+
+  <%= link_to fees_path,
+      class: "btn btn-outline-secondary" do %>
+
+      <i class="bi bi-arrow-left"></i>
+      Back to Fee Management
+
+  <% end %>
+
+<% else %>
+
+  <%= link_to student_path(@student),
+      class: "btn btn-outline-secondary" do %>
+
       <i class="bi bi-arrow-left"></i>
       Back to Student
-    <% end %>
+
+  <% end %>
+
+<% end %>
 
     <h2>Fee Collection</h2>
 
@@ -33,7 +50,6 @@
         <span>Student ID</span>
         <strong>STD-<%= @student.id.to_s.rjust(4, "0") %></strong>
       </div>
-
       <div>
         <span>Course</span>
         <strong><%= @student.course.course_name %></strong>
@@ -54,7 +70,7 @@
         <span class="status-badge">
           Active Student
         </span>
-      </div>
+      </div> students/fees.html.e
 
     </div>
 

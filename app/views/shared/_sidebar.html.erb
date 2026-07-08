@@ -26,7 +26,7 @@
     <p class="sidebar-title">ACADEMIC</p>
 
     <%= link_to students_path,
-        class: "sidebar-link #{'active' if controller_name == 'students'}" do %>
+        class: "sidebar-link #{'active' if controller_name == 'students' && params[:context] != 'fees'}"  do %>
       <i class="bi bi-mortarboard-fill"></i> <span>Students</span>
     <% end %>
 
@@ -54,7 +54,7 @@
     <p class="sidebar-title">FINANCE</p>
 
     <%= link_to fees_path,
-        class: "sidebar-link #{'active' if controller_name == 'fees'}" do %>
+        class: "sidebar-link #{'active' if controller_name == 'fees' || params[:context] == 'fees'}" do %>
 
       <i class="bi bi-cash-stack"></i> <span>Fees</span>
 

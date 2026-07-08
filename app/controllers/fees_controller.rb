@@ -9,6 +9,17 @@ class FeesController < ApplicationController
     @total_paid = Fee.sum(:paid_fee)
     @total_pending = Fee.sum(:due_fee)
     @overdue_count = Fee.where(status: "Overdue").count
+
+    # Search by student name
+    if params[:search].present?
+      @fees = @fees.joins(:student)
+                  .where("students.student_name ILIKE ?", "%#{params[:search]}%")
+    end
+
+    # Filter by status
+    if params[:status].present? && params[:status] != "All Status"
+      @fees = @fees.where(status: params[:status])
+    end
   end
 
   def new

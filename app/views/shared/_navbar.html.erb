@@ -23,6 +23,19 @@
         <%= render "shared/notification_dropdown" %>
 
       </div>
+
+
+      <div class="navbar-datetime">
+        <div class="date">
+            <i class="bi bi-calendar3"></i>
+            <span id="current-date"></span>
+        </div>
+
+        <div class="time">
+            <i class="bi bi-clock"></i>
+            <span id="current-time"></span>
+        </div>
+      </div>
     
     <%= link_to admin_profile_path, class: "admin-profile-link" do %>
     <div class="admin-profile">
