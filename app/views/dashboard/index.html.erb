@@ -162,11 +162,11 @@
 
     <div class="stats-body">
 
-      <h2>₹<%= @fees_collected %></h2>
+      <h2>₹<%= number_with_delimiter(@fees_collected.to_i) %></h2>
 
       <h6>Fees Collected</h6>
 
-      <p>Total fee received</p>
+      <p>Total fee received</p>                 
 
     </div>
 

@@ -6,6 +6,7 @@
 }
 
 .main-content{
+    
     flex: 1;
     padding: 30px;
     background: #F8FAFC;
@@ -39,6 +40,7 @@
 
 html,
 body{
+    font-size: 14px;
   margin:0;
   padding:0;
   background:var(--background);
@@ -86,7 +88,7 @@ body{
 
 .logo{
     margin:0;
-    font-size:28px;
+    font-size:22px;
     font-weight:700;
     color:#2563eb;
     letter-spacing: .3px;
@@ -261,7 +263,7 @@ body{
 }
 
 .notification-header h2{
-    font-size:30px;
+    font-size:28px;
     font-weight:700;
     color:#1e293b;
     margin-bottom:6px;
@@ -456,7 +458,7 @@ body{
 
     margin:0;
 
-    font-size:22px;
+    font-size:20px;
 
     font-weight:700;
 }
@@ -532,7 +534,7 @@ body{
 
     width:20px;
 
-    font-size:18px;
+    font-size:16px;
 
     text-align:center;
 }
@@ -551,7 +553,7 @@ body{
 
     border-radius:20px;
 
-    padding:24px;
+    padding:20px;
 
     box-shadow:0 10px 30px rgba(0,0,0,.05);
 
@@ -583,9 +585,9 @@ body{
 
 .stats-icon{
 
-    width:60px;
+    width:54px;
 
-    height:60px;
+    height:54px;
 
     border-radius:18px;
 
@@ -595,7 +597,7 @@ body{
 
     align-items:center;
 
-    font-size:28px;
+    font-size:24px;
 
     color:#fff;
 
@@ -619,7 +621,7 @@ body{
 
 .stats-body h2{
 
-    font-size:38px;
+    font-size:30px;
 
     font-weight:700;
 
@@ -633,7 +635,7 @@ body{
 
     color:#475569;
 
-    font-size:18px;
+    font-size:16px;
 
     margin-bottom:6px;
 
@@ -677,11 +679,11 @@ body{
     justify-content:space-between;
     align-items:center;
 
-    margin-bottom:35px;
+    margin-bottom:30px;
 }
 
 .dashboard-title{
-    font-size:32px;
+    font-size:30px;
     font-weight:700;
     color:#1E293B;
 }
@@ -722,7 +724,7 @@ body{
 
 .page-header h2{
 
-    font-size:34px;
+    font-size:30px;
     font-weight:700;
 
     margin-bottom:5px;
@@ -1632,7 +1634,7 @@ display:flex;
 
 .teacher-name{
     margin-top:20px;
-    font-size:32px;
+    font-size:30px;
     font-weight:700;
     color:#1f2937;
 }
@@ -2551,7 +2553,7 @@ display:flex;
 
 .admin-profile-header h2{
 
-    font-size:34px;
+    font-size:30px;
 
     font-weight:700;
 
@@ -2728,7 +2730,7 @@ display:flex;
 }
 
 .student-info-title{
-    font-size:22px;
+    font-size:20px;
     font-weight:700;
     margin-bottom:25px;
     color:#1f2937;
@@ -2806,7 +2808,7 @@ display:flex;
     letter-spacing:-0.5px;
     display:block;
     margin-top:8px;
-    font-size:24px;
+    font-size:22px;
     font-weight:700;
     color:#1f2937;
 }
