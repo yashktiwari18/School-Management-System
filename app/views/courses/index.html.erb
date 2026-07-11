@@ -1,71 +1,270 @@
 <div class="py-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Course Management</h2>
+  <div class="page-header">
 
-    <%= link_to "Add Course",
-        new_course_path,
-        class: "btn btn-primary" %>
+      <div>
+          <h1>Course Management</h1>
+          <p>
+              Manage all academic programs.
+          </p>
+      </div>
+
+      <%= link_to new_course_path,
+          class: "btn btn-primary add-course-btn" do %>
+
+          <i class="bi bi-plus-circle"></i>
+
+          Add Course
+
+      <% end %>
+
   </div>
 
-  <% if @courses.any? %>
 
-    <table class="table table-bordered table-hover">
+  <div class="course-stats">
 
-      <thead class="table-dark">
+    <div class="stat-card">
 
-        <tr>
-          <th>Course Code</th>
-          <th>Course Name</th>
-          <th>Duration</th>
-          <th>Fees</th>
-          <th width="180">Action</th>
-        </tr>
+        <small>Total Courses</small>
 
-      </thead>
+        <h2>
+            <%= @courses.count %>
+        </h2>
 
-      <tbody>
+    </div>
 
-        <% @courses.each do |course| %>
+    <div class="stat-card">
 
-          <tr>
+        <small>Total Students</small>
 
-            <td><%= course.course_code %></td>
-            <td><%= course.course_name %></td>
-            <td><%= course.duration %></td>
-            <td>₹ <%= course.fees %></td>
+        <h2>
+            <%= Student.count %>
+        </h2>
 
-            <td>
+    </div>
 
-            <div class="d-flex align-items-center gap-2">
+    <div class="stat-card">
 
-                <%= link_to "Edit",
-                edit_course_path(course),
-                class: "btn btn-warning btn-sm me-2" %>
+        <small>Avg Duration</small>
 
-                <%= button_to "Delete",
-                course_path(course),
-                method: :delete,
-                data: { turbo_confirm: "Are you sure?" },
-                class: "btn btn-danger btn-sm d-inline" %>
+        <% avg_duration = @courses.any? ? (@courses.sum { |c| c.duration.to_i }.to_f / @courses.count).round(1) : 0 %>
+
+          <h2>
+
+              <%= avg_duration %> Years
+
+          </h2>
+
+    </div>
+
+      <div class="stat-card">
+
+        <small>Total Fees</small>
+
+        <h2>
+
+            ₹<%= number_with_delimiter(@courses.sum(:fees)) %>
+
+        </h2>
+
+      </div>
+
+    </div>
+
+    <div class="course-search">
+
+      <i class="bi bi-search"></i>
+
+      <input
+          type="text"
+          placeholder="Search Course..."
+          id="courseSearch">
+
+    </div>
+
+    <div class="course-grid">
+
+<% @courses.each do |course| %>
+
+<%
+colors = %w[
+blue
+green
+purple
+orange
+red
+teal
+]
+
+color = colors[course.id % colors.length]
+
+filled = course.students.count
+total = course.total_seats.to_i
+
+seat_percentage =
+  total.zero? ? 0 : ((filled.to_f / total) * 100).round
+
+status =
+  if seat_percentage >= 100
+    "Full"
+  elsif seat_percentage >= 85
+    "Almost Full"
+  elsif seat_percentage >= 60
+    "Filling Fast"
+  else
+    "Open"
+  end
+
+progress_color =
+  if seat_percentage >= 85
+    "bg-danger"
+  elsif seat_percentage >= 60
+    "bg-warning"
+  else
+    "bg-success"
+  end
+%>
+
+<div class="course-card">
+
+    <div class="course-top">
+
+        <div class="course-icon <%= color %>">
+
+            <i class="bi bi-mortarboard-fill"></i>
+
+        </div>
+
+        <div class="course-title">
+
+            <h3><%= course.course_code %></h3>
+
+            <p><%= course.course_name %></p>
+
+            <span class="course-status">
+
+                <%= status %>
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="course-info">
+
+        <div class="detail-row">
+
+            <span>Duration</span>
+
+            <strong><%= course.duration %> Years</strong>
+
+        </div>
+
+        <div class="detail-row">
+
+            <span>Annual Fee</span>
+
+            <strong>
+
+                ₹<%= number_with_delimiter(course.fees) %>
+
+            </strong>
+
+        </div>
+
+        <div class="detail-row">
+
+            <span>Students</span>
+
+            <strong>
+
+                <%= filled %> / <%= total %>
+
+            </strong>
+
+        </div>
+
+        <div class="detail-row">
+
+            <span>Teachers</span>
+
+            <strong>
+
+                <%= course.teachers.count %>
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="course-progress">
+
+        <div class="progress-label">
+
+            <span>Seat Occupancy</span>
+
+            <strong>
+
+                <%= seat_percentage %>%
+
+            </strong>
+
+        </div>
+
+        <div class="progress">
+
+            <div class="progress-bar <%= progress_color %>"
+
+                 style="width:<%= seat_percentage %>%">
 
             </div>
 
-            </td>
+        </div>
 
-          </tr>
+    </div>
+
+    <div class="course-footer">
+
+        <%= link_to edit_course_path(course),
+
+            class:"btn btn-warning btn-sm" do %>
+
+            <i class="bi bi-pencil"></i>
+
+            Edit
 
         <% end %>
 
-      </tbody>
+        <%= button_to course,
 
-    </table>
+            method: :delete,
 
-  <% else %>
+            form: {
 
-    <div class="alert alert-info">
-      No courses found. Click <strong>"Add Course"</strong> to create your first course.
+              data: {
+
+                turbo_confirm: "Delete this course?"
+
+              }
+
+            },
+
+            class:"btn btn-danger btn-sm" do %>
+
+            <i class="bi bi-trash"></i>
+
+            Delete
+
+        <% end %>
+
     </div>
 
-  <% end %>
+</div>
+
+<% end %>
+
+</div>
+
 
 </div>

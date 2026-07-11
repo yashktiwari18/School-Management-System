@@ -121,3 +121,51 @@ puts "Teachers: #{Teacher.count}"
 puts "Students: #{Student.count}"
 puts "Fees     : #{Fee.count}"
 puts "---------------------------------------"
+
+
+teacher = Teacher.first
+
+course = Course.find_by(course_name: "Bachelor of Computer Applications")
+
+Timetable.create!(
+  teacher: teacher,
+  course: course,
+  day: "Thursday",
+  period: 1,
+  start_time: "09:00",
+  end_time: "10:00",
+  subject: "Database Management",
+  room: "A-201"
+)
+
+Timetable.create!(
+  teacher: teacher,
+  course: course,
+  day: "Thursday",
+  period: 2,
+  start_time: "10:00",
+  end_time: "11:00",
+  subject: "Java Programming",
+  room: "A-203"
+)
+
+Timetable.create!(
+  teacher: teacher,
+  course: course,
+  day: "Thursday",
+  period: 4,
+  start_time: "01:00",
+  end_time: "02:00",
+  subject: "Web Development",
+  room: "C-102"
+)
+
+Course.find_by(course_code: "BCA")&.update(total_seats: 60)
+
+Course.find_by(course_code: "BBA")&.update(total_seats: 80)
+
+Course.find_by(course_code: "BIT")&.update(total_seats: 120)
+
+Course.find_by(course_code: "BCOM")&.update(total_seats: 60)
+
+Course.find_by(course_code: "MBA")&.update(total_seats: 40)

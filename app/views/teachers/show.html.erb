@@ -1,123 +1,437 @@
-<div class="teacher-profile-page">
+<div class="page-header-actions">
 
-    <div class="teacher-profile-header">
+    <%= link_to teachers_path,
+        class: "btn btn-outline-secondary btn-sm" do %>
 
-        <!-- Back Button -->
-        <%= link_to "← Back to Teachers",
-            teachers_path,
-            class: "back-btn" %>
+        <i class="bi bi-arrow-left"></i>
+        Back to Teachers
 
-        <!-- Teacher Profile Card -->
-        <div class="teacher-profile-card">
+    <% end %>
 
-            <!-- Avatar -->
-            <div class="teacher-avatar">
-                <%= @teacher.teacher_name.first.upcase %>
+</div>
+
+
+<div class="profile-summary">
+
+  <!-- Avatar -->
+  <div class="profile-avatar-section">
+
+    <div class="profile-avatar">
+      <%= @teacher.teacher_name.first.upcase %>
+    </div>
+
+  </div>
+
+  <!-- Teacher Details -->
+  <div class="profile-details">
+
+    <h2><%= @teacher.teacher_name %></h2>
+
+    <p>
+      <i class="bi bi-book"></i>
+      <%= @teacher.course.course_name %>
+    </p>
+
+    <p>
+      <i class="bi bi-award"></i>
+      <%= @teacher.education %>
+    </p>
+
+    <span class="student-status">
+      Active Teacher
+    </span>
+
+    <div class="profile-actions">
+
+      <%= link_to edit_teacher_path(@teacher),
+          class: "btn btn-primary" do %>
+
+        <i class="bi bi-pencil-square"></i>
+        Edit Profile
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <!-- Quick Information -->
+
+  <div class="profile-quick-info">
+
+    <div class="quick-info-item">
+
+      <small>Teacher ID</small>
+
+      <strong>
+        TCH-<%= @teacher.id.to_s.rjust(3, "0") %>
+      </strong>
+
+    </div>
+
+    <div class="quick-info-item">
+
+      <small>Joined On</small>
+
+      <strong>
+        <%= @teacher.created_at.strftime("%d %b %Y") %>
+      </strong>
+
+    </div>
+
+    <div class="quick-info-item">
+
+      <small>Email</small>
+
+      <strong><%= @teacher.email %></strong>
+
+    </div>
+
+    <div class="quick-info-item">
+
+      <small>Phone</small>
+
+      <strong><%= @teacher.phone %></strong>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="assigned-workload">
+
+    <div class="workload-card">
+
+        <h4>
+            <i class="bi bi-building"></i>
+            Assigned Classes
+        </h4>
+
+        <% @assigned_classes.each do |course, schedules| %>
+
+            <div class="work-item">
+
+                <strong><%= course.course_name %></strong>
+
+                <span>
+                    <%= schedules.count %> Periods
+                </span>
+
             </div>
 
-            <!-- Teacher Name -->
-            <h2 class="teacher-name">
-                <%= @teacher.teacher_name %>
-            </h2>
+        <% end %>
 
-            <!-- Course -->
-            <p class="teacher-course">
-                <i class="bi bi-book"></i>
-                <%= @teacher.course.course_name %>
-            </p>
+    </div>
 
-            <!-- Qualification -->
-            <p class="teacher-qualification">
-                <i class="bi bi-award"></i>
-                <%= @teacher.education %>
-            </p>
 
-            <!-- Status -->
-            <span class="teacher-status">
-                <i class="bi bi-check-circle-fill"></i>
-                Active Teacher
-            </span>
+    <div class="workload-card">
 
-            <!-- Action Buttons -->
-            <div class="teacher-actions">
+        <h4>
+            <i class="bi bi-book-half"></i>
+            Subjects Teaching
+        </h4>
 
-                <%= link_to edit_teacher_path(@teacher),
-                class: "btn-edit-profile" do %>
-                <i class="bi bi-pencil-square"></i>
-                Edit Profile
-                <% end %>
+        <% @assigned_subjects.each do |subject, schedules| %>
+
+            <div class="work-item">
+
+                <strong><%= subject %></strong>
+
+                <span>
+                    <%= schedules.count %> Classes
+                </span>
 
             </div>
 
+        <% end %>
+
+    </div>
+
+</div>
+
+
+  <div class="schedule-card">
+
+  <div class="card-header-custom">
+
+    <div>
+
+      <h4>
+        <i class="bi bi-calendar-week"></i>
+        Today's Schedule
+      </h4>
+
+      <p>
+        <%= @today %> Class Schedule
+      </p>
+
+    </div>
+
+  </div>
+
+  <% if @today_schedule.any? %>
+
+
+  <div class="schedule-tabs">
+
+    <button class="schedule-tab"
+            id="yesterday-tab">
+
+        Yesterday
+
+    </button>
+
+    <button class="schedule-tab active"
+            id="today-tab">
+
+        Today
+
+    </button>
+
+    <button class="schedule-tab"
+            id="tomorrow-tab">
+
+        Tomorrow
+
+    </button>
+
+</div>
+
+    <table class="schedule-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Period</th>
+          <th>Time</th>
+          <th>Class</th>
+          <th>Subject</th>
+          <th>Room</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <% @today_schedule.each do |schedule| %>
+
+          <tr>
+
+            <td>
+              P<%= schedule.period %>
+            </td>
+
+            <td>
+              <%= schedule.start_time.strftime("%I:%M %p") %>
+              -
+              <%= schedule.end_time.strftime("%I:%M %p") %>
+            </td>
+
+            <td>
+              <%= schedule.course.course_name %>
+            </td>
+
+            <td>
+              <%= schedule.subject %>
+            </td>
+
+            <td>
+              <%= schedule.room %>
+            </td>
+
+            <td>
+
+              <% current_time = Time.current.strftime("%H:%M") %>
+
+              <% start_time = schedule.start_time.strftime("%H:%M") %>
+
+              <% end_time = schedule.end_time.strftime("%H:%M") %>
+
+              <% if current_time < start_time %>
+
+                  <span class="schedule-status upcoming">
+                      Upcoming
+                  </span>
+
+              <% elsif current_time > end_time %>
+
+                  <span class="schedule-status completed">
+                      Completed
+                  </span>
+
+              <% else %>
+
+                  <span class="schedule-status ongoing">
+                      Ongoing
+                  </span>
+
+              <% end %>
+
+            </td>
+
+          </tr>
+
+        <% end %>
+
+      </tbody>
+
+    </table>
+
+  <% else %>
+
+    <div class="empty-schedule">
+
+      <i class="bi bi-calendar-x"></i>
+
+      <h5>No Classes Today</h5>
+
+      <p>
+        This teacher has no scheduled lectures today.
+      </p>
+
+    </div>
+
+  <% end %>
+
+</div>
+
+
+<div class="teacher-stats">
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+            <i class="bi bi-journal-bookmark-fill"></i>
         </div>
 
+        <h2><%= @total_classes %></h2>
+
+        <p>Today's Classes</p>
+
     </div>
 
-    <div class="teacher-info-grid">
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+
+        <h2><%= @completed_classes %></h2>
+
+        <p>Completed</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+            <i class="bi bi-play-circle-fill"></i>
+        </div>
+
+        <h2><%= @ongoing_classes %></h2>
+
+        <p>Ongoing</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+            <i class="bi bi-clock-fill"></i>
+        </div>
+
+        <h2><%= @upcoming_classes %></h2>
+
+        <p>Upcoming</p>
+
+    </div>
+
+</div>
+
+
+<div class="profile-grid">
 
   <!-- Basic Information -->
-  <div class="info-card">
 
-    <h3>
+  <div class="profile-card">
+
+    <div class="card-title">
+
       <i class="bi bi-person-vcard"></i>
-      Basic Information
-    </h3>
 
-    <div class="info-row">
-      <span>Email</span>
-      <strong><%= @teacher.email %></strong>
+      <h4>Basic Information</h4>
+
     </div>
 
-    <div class="info-row">
-      <span>Phone</span>
-      <strong><%= @teacher.phone %></strong>
-    </div>
+    <div class="info-list">
 
-    <div class="info-row">
-      <span>Teacher ID</span>
-      <strong>TCH-<%= @teacher.id.to_s.rjust(3, "0") %></strong>
-    </div>
+      <div class="info-row">
+        <span>Email</span>
+        <strong><%= @teacher.email %></strong>
+      </div>
 
-    <div class="info-row">
-      <span>Joined On</span>
-      <strong><%= @teacher.created_at.strftime("%d %b %Y") %></strong>
+      <div class="info-row">
+        <span>Phone</span>
+        <strong><%= @teacher.phone %></strong>
+      </div>
+
+      <div class="info-row">
+        <span>Teacher ID</span>
+        <strong>TCH-<%= @teacher.id.to_s.rjust(3, "0") %></strong>
+      </div>
+
+      <div class="info-row">
+        <span>Joined On</span>
+        <strong><%= @teacher.created_at.strftime("%d %b %Y") %></strong>
+      </div>
+
     </div>
 
   </div>
 
   <!-- Academic Information -->
-  <div class="info-card">
 
-    <h3>
-      <i class="bi bi-mortarboard"></i>
-      Academic Information
-    </h3>
+  <div class="profile-card">
 
-    <div class="info-row">
-      <span>Assigned Course</span>
-      <strong><%= @teacher.course.course_name %></strong>
+    <div class="card-title">
+
+      <i class="bi bi-mortarboard-fill"></i>
+
+      <h4>Academic Information</h4>
+
     </div>
 
-    <div class="info-row">
-      <span>Qualification</span>
-      <strong><%= @teacher.education %></strong>
-    </div>
+    <div class="info-list">
 
-    <div class="info-row">
-      <span>Status</span>
-      <span class="status-active">Active</span>
-    </div>
+      <div class="info-row">
+        <span>Assigned Course</span>
+        <strong><%= @teacher.course.course_name %></strong>
+      </div>
 
-    <div class="info-row">
-      <span>Department</span>
-      <strong>Not Available</strong>
+      <div class="info-row">
+        <span>Qualification</span>
+        <strong><%= @teacher.education %></strong>
+      </div>
+
+      <div class="info-row">
+        <span>Status</span>
+        <span class="badge bg-success">Active</span>
+      </div>
+
+      <div class="info-row">
+        <span>Department</span>
+        <strong>Not Available</strong>
+      </div>
+
     </div>
 
   </div>
 
 </div>
 
-<div class="teacher-summary-card">
+    <div class="profile-card">
 
   <div class="summary-header">
     <i class="bi bi-person-workspace"></i>

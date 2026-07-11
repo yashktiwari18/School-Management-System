@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_08_080119) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_10_104832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,6 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_08_080119) do
     t.datetime "created_at", null: false
     t.string "duration"
     t.decimal "fees"
+    t.integer "total_seats"
     t.datetime "updated_at", null: false
   end
 
@@ -100,9 +101,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_08_080119) do
     t.index ["course_id"], name: "index_teachers_on_course_id"
   end
 
+  create_table "timetables", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.datetime "created_at", null: false
+    t.string "day"
+    t.time "end_time"
+    t.integer "period"
+    t.string "room"
+    t.time "start_time"
+    t.string "subject"
+    t.bigint "teacher_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_timetables_on_course_id"
+    t.index ["teacher_id"], name: "index_timetables_on_teacher_id"
+  end
+
   add_foreign_key "activity_logs", "admins"
   add_foreign_key "attendances", "students"
   add_foreign_key "fees", "students"
   add_foreign_key "students", "courses"
   add_foreign_key "teachers", "courses"
+  add_foreign_key "timetables", "courses"
+  add_foreign_key "timetables", "teachers"
 end

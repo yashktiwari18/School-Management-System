@@ -25,6 +25,44 @@ class TeachersController < ApplicationController
   end
 
   def show
+  today = Date.current
+
+  @yesterday = (today - 1.day).strftime("%A")
+  @today = today.strftime("%A")
+  @tomorrow = (today + 1.day).strftime("%A")
+
+  @yesterday_schedule = @teacher.timetables
+                                .where(day: @yesterday)
+                                .order(:period)
+
+  @today_schedule = @teacher.timetables
+                            .where(day: @today)
+                            .order(:period)
+
+  @tomorrow_schedule = @teacher.timetables
+                               .where(day: @tomorrow)
+                               .order(:period)
+
+  @assigned_classes = @teacher.timetables
+                            .includes(:course)
+                            .group_by(&:course)
+  @assigned_subjects = @teacher.timetables.group_by(&:subject)
+  current_time = Time.current
+
+  @total_classes = @today_schedule.count
+
+  @completed_classes = @today_schedule.count do |schedule|
+    current_time > schedule.end_time
+  end
+
+  @ongoing_classes = @today_schedule.count do |schedule|
+    current_time >= schedule.start_time &&
+    current_time <= schedule.end_time
+  end
+
+  @upcoming_classes = @today_schedule.count do |schedule|
+    current_time < schedule.start_time
+  end
   end
 
   def update

@@ -219,101 +219,101 @@
 
 
 
-<div class="profile-grid">
+    <div class="profile-grid">
 
-    <div class="profile-card">
+        <div class="profile-card">
 
-        <div class="card-title">
+            <div class="card-title">
 
-            <i class="bi bi-cash-stack"></i>
+                <i class="bi bi-cash-stack"></i>
 
-            <h4>Fee Summary</h4>
+                <h4>Fee Summary</h4>
+
+            </div>
+
+            <div class="info-list">
+
+                <div class="info-row">
+
+                    <span>Total Fee</span>
+
+                    <strong>
+                        ₹<%= @fee&.total_fee || 0 %>
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>Paid</span>
+
+                    <strong class="text-success">
+                        ₹<%= @fee&.paid_fee || 0 %>
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>Pending</span>
+
+                    <strong class="text-danger">
+                        ₹<%= @fee&.due_fee || 0 %>
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+                    <span>Status</span>
+                    <span class="badge <%= @fee&.status == 'Paid' ? 'bg-success' : 'bg-warning text-dark' %>">
+                        <%= @fee&.status || "No Record" %>
+                    </span>
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="info-list">
+        <div class="profile-card">
 
-            <div class="info-row">
+            <div class="card-title">
 
-                <span>Total Fee</span>
+                <i class="bi bi-calendar-check"></i>
 
-                <strong>
-                    ₹<%= @fee&.total_fee || 0 %>
-                </strong>
+                <h4>Attendance Summary</h4>
 
             </div>
 
-            <div class="info-row">
+            <div class="attendance-summary">
 
-                <span>Paid</span>
+                <div class="attendance-box total">
 
-                <strong class="text-success">
-                    ₹<%= @fee&.paid_fee || 0 %>
-                </strong>
+                    <small>Total Classes</small>
 
-            </div>
+                    <h3>0</h3>
 
-            <div class="info-row">
+                </div>
 
-                <span>Pending</span>
+                <div class="attendance-box present">
 
-                <strong class="text-danger">
-                    ₹<%= @fee&.due_fee || 0 %>
-                </strong>
+                    <small>Present</small>
 
-            </div>
+                    <h3>0 (0%)</h3>
 
-            <div class="info-row">
-                <span>Status</span>
-                <span class="badge <%= @fee&.status == 'Paid' ? 'bg-success' : 'bg-warning text-dark' %>">
-                    <%= @fee&.status || "No Record" %>
-                </span>
+                </div>
+
+                <div class="attendance-box absent">
+
+                    <small>Absent</small>
+
+                    <h3>0 (0%)</h3>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
-
-    <div class="profile-card">
-
-    <div class="card-title">
-
-        <i class="bi bi-calendar-check"></i>
-
-        <h4>Attendance Summary</h4>
-
-    </div>
-
-    <div class="attendance-summary">
-
-        <div class="attendance-box total">
-
-            <small>Total Classes</small>
-
-            <h3>0</h3>
-
-        </div>
-
-        <div class="attendance-box present">
-
-            <small>Present</small>
-
-            <h3>0 (0%)</h3>
-
-        </div>
-
-        <div class="attendance-box absent">
-
-            <small>Absent</small>
-
-            <h3>0 (0%)</h3>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div>
 
 </div>

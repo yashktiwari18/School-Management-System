@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
-  has_many :teachers, dependent: :destroy
-  has_many :students, dependent: :destroy
+  has_many :students, dependent: :nullify
+  has_many :teachers, dependent: :nullify
+  has_many :timetables
 
   validates :course_code,
             presence: true,

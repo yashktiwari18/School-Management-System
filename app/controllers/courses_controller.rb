@@ -48,7 +48,8 @@ end
       :course_code,
       :course_name,
       :duration,
-      :fees
+      :fees,
+      :total_seats
     )
   end
 end

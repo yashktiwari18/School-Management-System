@@ -32,6 +32,12 @@
     <%= form.number_field :fees, step: 0.01, class: "form-control" %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :total_seats %>
+    <%= form.number_field :total_seats, class: "form-control", placeholder: "Enter Total Seats" %>
+
+  </div>
+
 <%= form.submit(
       @course.new_record? ? "Create Course" : "Update Course",
       class: "btn btn-success"
