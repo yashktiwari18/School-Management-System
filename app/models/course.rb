@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   has_many :students, dependent: :nullify
   has_many :teachers, dependent: :nullify
   has_many :timetables
+  has_many :attendances
 
   validates :course_code,
             presence: true,

@@ -1,6 +1,7 @@
 class Teacher < ApplicationRecord
   belongs_to :course
   has_many :timetables, dependent: :destroy
+  has_many :attendances
 
   validates :teacher_name,
             presence: true,

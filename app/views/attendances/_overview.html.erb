@@ -1,50 +1,71 @@
 <div class="overview-summary">
 
-  <div class="summary-card blue">
+    <div class="summary-card blue">
 
-      <div class="icon">
-          🎓
-      </div>
+        <div class="summary-top">
 
-      <div>
+            <div class="summary-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
 
-          <h4>Students Present</h4>
+            <div class="summary-value">
+                <%= @students_present %>
+            </div>
 
-          <h2>
-              <%= @students_present %>
-          </h2>
+        </div>
 
-          <p>
-              out of <%= @total_students %>
-          </p>
+        <h4>Students Present</h4>
 
-      </div>
+        <p>
+            <%= @total_students %> Total Students
+        </p>
 
-  </div>
+    </div>
 
 
 
-  <div class="summary-card green">
+    <div class="summary-card green">
 
-      <div class="icon">
-          👨‍🏫
-      </div>
+        <div class="summary-top">
 
-      <div>
+            <div class="summary-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
 
-          <h4>Teachers Present</h4>
+            <div class="summary-value">
+                <%= @teachers_present %>
+            </div>
 
-          <h2>
-              <%= @teachers_present %>
-          </h2>
+        </div>
 
-          <p>
-              out of <%= @total_teachers %>
-          </p>
+        <h4>Students Present</h4>
 
-      </div>
+        <p>
+            <%= @total_teachers %> Total Teachers
+        </p>
 
-  </div>
+    </div>
+
+
+
+    <div class="summary-card green">
+
+        <div class="summary-top">
+
+            <div class="summary-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
+
+            <div class="summary-value">
+                <%= @students_late %>
+            </div>
+
+        </div>
+
+        <h4>Late Arrivals</h4>
+
+
+    </div>
 
 
 
@@ -93,5 +114,131 @@
       </div>
 
   </div>
+
+</div>
+
+
+<div class="attendance-progress-card">
+
+  <div class="card-title">
+    <i class="bi bi-clipboard-check"></i>
+    <h3>Today's Attendance Completion</h3>
+  </div>
+
+  <div class="progress-info">
+
+    <span>
+      <%= @completed_classes %> /
+      <%= @total_classes %> Classes Submitted
+    </span>
+
+    <strong>
+      <%= @completion_rate %>%
+    </strong>
+
+  </div>
+
+  <div class="progress">
+
+    <div class="progress-bar bg-success"
+         style="width:<%= @completion_rate %>%">
+    </div>
+
+  </div>
+
+</div>
+
+<div class="overview-grid">
+
+  <div class="overview-card">
+
+      <div class="card-title">
+
+          <i class="bi bi-mortarboard-fill"></i>
+
+          <h4>Course Attendance</h4>
+
+      </div>
+
+      <% @courses.each do |course| %>
+
+        <div class="info-row">
+
+            <span>
+
+                <%= course.course_code %>
+
+            </span>
+
+            <strong>
+
+                92%
+
+            </strong>
+
+        </div>
+
+      <% end %>
+
+  </div>
+
+  <div class="overview-card">
+
+    <div class="card-title">
+
+        <i class="bi bi-person-workspace"></i>
+
+        <h4>Teacher Status</h4>
+
+    </div>
+
+    <% @teachers.each do |teacher| %>
+
+      <div class="info-row">
+
+          <span>
+
+              <%= teacher.teacher_name %>
+
+          </span>
+
+          <span class="badge bg-success">
+
+              Submitted
+
+          </span>
+
+      </div>
+
+    <% end %>
+
+</div>
+
+
+<div class="overview-card full-width">
+
+    <div class="card-title">
+
+        <i class="bi bi-clock-history"></i>
+
+        <h4>Recent Attendance Activity</h4>
+
+    </div>
+
+    <div class="activity-item">
+
+        <strong>10:05 AM</strong>
+
+        Teacher 1 submitted attendance for BCA.
+
+    </div>
+
+    <div class="activity-item">
+
+        <strong>11:00 AM</strong>
+
+        Teacher 2 submitted attendance for MBA.
+
+    </div>
 
 </div>

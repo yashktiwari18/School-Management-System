@@ -1,9 +1,32 @@
 class AttendancesController < ApplicationController
-  before_action :load_workspace_data, only: [:index, :workspace]
+  before_action :load_workspace_data, only: [ :index, :workspace ]
   before_action :require_login
 
   def index
-    
+    @total_students = Student.count
+
+    @total_teachers = Teacher.count
+
+    @students_present =
+      Attendance.where(
+        attendance_date: Date.today,
+        status: "Present"
+      ).count
+
+    @students_late =
+      Attendance.where(
+        attendance_date: Date.today,
+        status: "Late"
+      ).count
+
+    @teachers_present = Teacher.count
+
+    @attendance_rate =
+      if @total_students.zero?
+        0
+      else
+        ((@students_present.to_f / @total_students) * 100).round
+      end
   end
 
   def new
@@ -79,7 +102,7 @@ class AttendancesController < ApplicationController
 
   # temporary until teacher attendance module
   @teachers_present = 0
-end
+  end
 
   def attendance_params
     params.require(:attendance)

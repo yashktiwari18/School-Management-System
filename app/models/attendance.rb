@@ -1,5 +1,7 @@
 class Attendance < ApplicationRecord
   belongs_to :student
+  belongs_to :teacher
+  belongs_to :course
 
   validates :attendance_date, presence: true
 
